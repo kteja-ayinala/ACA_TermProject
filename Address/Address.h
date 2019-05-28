@@ -12,7 +12,7 @@
 //offset
 
 
-typedef struct Address{
+typedef struct Address {
     int Offset;
     int Index;
     int Tag;

@@ -9,8 +9,8 @@
 #include "L1-Data/L1-Data.h"
 
 void l1Write(Address addr, int value);
-int l1Read(Address addr);
 
+int l1Read(Address addr);
 
 
 #endif //ACA_TERMPROJECT_L1_H
