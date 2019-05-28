@@ -7,7 +7,7 @@
 void main(){
     printf("Implementation starts from here");
     //processor
-    //L1 cache
+    //L1-Controller cache
     //L2 cache
     //DRAM
 }
