@@ -5,10 +5,20 @@
 #ifndef ACA_TERMPROJECT_ADDRESS_H
 #define ACA_TERMPROJECT_ADDRESS_H
 
-
+//binary address
 //block address
 //tag
 //index
 //offset
+
+
+typedef struct Address{
+    int Offset;
+    int Index;
+    int Tag;
+    int Addr;
+} Address;
+
+int convertAddressToBinary(Address);
 
 #endif //ACA_TERMPROJECT_ADDRESS_H
