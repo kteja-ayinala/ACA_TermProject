@@ -10,18 +10,19 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-int convertAddressToBinary(int Addr) {
-    int a[10], n, i;
-    system("cls");
-    printf("Enter the number to convert: ");
-    scanf("%d", &n);
-    for (i = 0; n > 0; i++) {
+int * convertAddressToBinary(int addr) {
+    int n = addr;
+    int bits = 17;
+    int  i;
+    int * a = malloc(bits);
+//    char * s = malloc(bits);
+    for (i = 0; n>0; i++) {
         a[i] = n % 2;
         n = n / 2;
     }
-    printf("\nBinary of Given Number is=");
     for (i = i - 1; i >= 0; i--) {
         printf("%d", a[i]);
     }
+    return a;
 }
 
