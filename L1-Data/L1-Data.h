@@ -1,7 +1,6 @@
 //
 // Created by Krishna Teja Ayinala on 2019-05-28.
 //
-
 #ifndef ACA_TERMPROJECT_L1_DATA_H
 #define ACA_TERMPROJECT_L1_DATA_H
 
