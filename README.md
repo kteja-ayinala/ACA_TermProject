@@ -33,5 +33,5 @@ index + tag: 12 bits
 
 CPU address
 --------------------
-18 bits</br>
+17 bits</br>
 
