@@ -5,15 +5,15 @@
 #ifndef ACA_TERMPROJECT_PROCESSOR_H
 #define ACA_TERMPROJECT_PROCESSOR_H
 
-typedef struct Processor{
-    unsigned address: 18; // CPU address
-    unsigned rw: 1; //0 for CPU read and 1 for write
-    char instruction[100]; //CPU instruction
-    char value; // for write operation
-};
+//typedef struct InstructionProcessor{
+//    unsigned address: 18; // CPU address
+//    unsigned rw: 1; //0 for CPU read and 1 for write
+//    char instruction[100]; //CPU instruction
+//    char value; // for write operation
+//}Processor;
 
-extern struct Processor;
+//extern struct Processor;
 
-void run_processor(Processor* processor);
+void invokeProcessor(Processor* processor);
 
 #endif //ACA_TERMPROJECT_PROCESSOR_H
