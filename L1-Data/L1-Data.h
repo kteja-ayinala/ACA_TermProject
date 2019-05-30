@@ -7,8 +7,8 @@
 typedef struct L1Block {
     int valid;
     int dirty;
+    char* tag;
     unsigned char data[32];
-    int tag;
 } l1_block;
 
 extern struct L1Block L1Data[32 * 4];
