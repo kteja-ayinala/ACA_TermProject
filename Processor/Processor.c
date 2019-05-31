@@ -6,6 +6,7 @@
 #include "Processor.h"
 #include<stdio.h>
 #include <stdbool.h>
+#include<string.h>
 
 Processor Invoke_Processor(){
     Processor processor = {};
@@ -16,7 +17,7 @@ Processor Invoke_Processor(){
 void startProcessor(Processor *processor)
 {
     // a)Read input file
-    FILE *f = fopen("/Users/krishnatejaayinala/CLionProjects/ACA-TermProject/Processor/input.txt", "r"); //take input file
+    FILE *f = fopen("/Users/sindhurabonthu/CLionProjects/ACA_TermProject/Processor/input.txt", "r"); //take input file
 
         while (!feof(f)) {
             Address addr;
@@ -24,9 +25,9 @@ void startProcessor(Processor *processor)
             bool rw; //0 for CPU read and 1 for write
             char instruction[100]; //CPU instruction
             char *value; // for write operation
-            fscanf(f, "%s", instruction);
+            fscanf(f, "%[^\n]s", instruction);
             printf("\nInstruction %s", instruction);
-            if (strcmp(instruction, "CPURead")) //check if the instruction is Read instruction
+            if (!(strcmp(instruction, "CPURead"))) //check if the instruction is Read instruction
             {
                 printf("\nreceived CPURead");
                 fscanf(f, "%d", &address);
@@ -34,7 +35,7 @@ void startProcessor(Processor *processor)
 //                addr = Invoke_Address(address);
 
                 // b)Queue instructions
-            } else if (strcmp(instruction, "CPUWrite")) // check if the instruction is Write
+            } else if (!(strcmp(instruction, "CPUWrite"))) // check if the instruction is Write
             {
                 printf("\nreceived CPUWrite");
                 fscanf(f, "%d %[^\n]", &address, &value);
@@ -44,7 +45,7 @@ void startProcessor(Processor *processor)
 
             }
             if (rw == 0) {
-
+                break;
             }
         }
 }
