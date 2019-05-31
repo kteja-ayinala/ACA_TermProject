@@ -12,8 +12,13 @@
 //    char value; // for write operation
 //}Processor;
 
-//extern struct Processor;
+typedef struct Processor_Struct{
+    void (*startProcessor)();
+} Processor;
 
-//void invokeProcessor(Processor* processor);
+Processor Invoke_Processor();
+
+
+void startProcessor(Processor *processor);
 
 #endif //ACA_TERMPROJECT_PROCESSOR_H

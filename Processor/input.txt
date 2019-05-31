@@ -1,0 +1,3 @@
+CPUWrite 2 A
+CPURead 5
+CPURead 6

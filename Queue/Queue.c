@@ -1,5 +1,5 @@
 //
-// Created by Sindhura on 2019-05-28.
+// Created by Sindhura & Krishna Teja on 2019-05-28.
 //
 
 #include<stdio.h>
@@ -28,19 +28,19 @@ int getLength(){
 //function to add element to a queue
 void enqueue(int element){
     if(!isFull()){
-        if(rear == MAX-1){
-            rear = -1;
+        if(q_end_index == MAX-1){
+            q_end_index = -1;
         }
-        queue[++rear] = element;
+        queue[++q_end_index] = element;
         length++;
     }
 }
 //function to remove an element from queue
 int dequeue(){
-    int element = queue[front++];
-    if(front==MAX)
+    int element = queue[q_start_index++];
+    if(q_start_index==MAX)
     {
-        front = 0;
+        q_start_index = 0;
     }
     length--;
     return  element;

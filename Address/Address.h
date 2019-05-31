@@ -20,7 +20,7 @@ typedef struct AddressBits {
 
 //int * _convertAddressToBinary(int Address);
 
-Address Constructor_Address(char* bitString);
+Address Invoke_Address(char *bitString);
 
 char* GetChar(char* originalString,int start,int length,char* substring);
 int fromBinary(char *s);

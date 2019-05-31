@@ -1,5 +1,5 @@
 //
-// Created by Krishna Teja Ayinala on 2019-05-28.
+// Created by Krishna Teja Ayinala & Sindhura on 2019-05-28.
 //
 
 #include "Address.h"
@@ -72,13 +72,12 @@ void format_address(int address, int blockSize, int tagLength, int indexLength, 
     char str[80];
     sprintf(str, "%17s", binary_address);
 
-
-    printf("buffer  = %s", str);
+    printf("\n Address  (17 bits)  = %s", str);
 
 
 }
 
-Address Constructor_Address(char* bitString){
+Address Invoke_Address(char *bitString){
     char* output = malloc(9);
     GetChar(bitString,0,8,output);
     char* TagString = output;
