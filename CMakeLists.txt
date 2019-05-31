@@ -3,4 +3,4 @@ project(ACA_TermProject C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(ACA_TermProject main.c Queue/Queue.h Queue/Queue.c)
+add_executable(ACA_TermProject main.c Queue/Queue.h Queue/Queue.c Address/Address.h Address/Address.c Memory/Memory.h Memory/Memory.c)
