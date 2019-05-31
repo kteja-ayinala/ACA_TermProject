@@ -34,13 +34,13 @@ int fromBinary(char* bitString){
     return value;
 }
 
-char GetChar(char originalString[],int start,int length,char* substring){
+char* GetChar(char originalString[],int start,int length,char* substring){
     memcpy( substring, &originalString[start], length );
     substring[length] = '\0';
     return substring;
 }
 
-char *int2bin(int a, char *buffer, int buf_size) {
+char* int2bin(int a, char *buffer, int buf_size) {
     buffer += (buf_size - 1);
 
     for (int i = 31; i >= 0; i--) {

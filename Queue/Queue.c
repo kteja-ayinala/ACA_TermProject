@@ -8,8 +8,8 @@
 #define MAX 100
 int queue[MAX];
 int length = 0;
-int front = -1;
-int rear = -1;
+int q_start_index = -1;
+int q_end_index = -1;
 
 //function to check if queue is empty
 bool queueEmpty(){

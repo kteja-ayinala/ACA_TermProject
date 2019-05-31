@@ -18,8 +18,12 @@ typedef struct AddressBits {
     int Addr;
 } Address;
 
+//int * _convertAddressToBinary(int Address);
+
 Address Constructor_Address(char* bitString);
 
-int * _convertAddressToBinary(int Address);
+char* GetChar(char* originalString,int start,int length,char* substring);
+int fromBinary(char *s);
+char* int2bin(int a, char *buffer, int buf_size);
 
 #endif //ACA_TERMPROJECT_ADDRESS_H
