@@ -7,6 +7,16 @@
 #ifndef ACA_TERMPROJECT_BLOCK_H
 #define ACA_TERMPROJECT_BLOCK_H
 
+#include "Address/Address.h"
+
+typedef struct Block-Struct {
+    int valid;
+    char* tag;
+    int dirty;
+    Address addr;
+    unsigned char data[32];
+}Block;
+
 #endif //ACA_TERMPROJECT_BLOCK_H
 
 

@@ -9,8 +9,8 @@ typedef struct L2Block
 {
     int valid;
     int dirty;
+    char * tag;
     unsigned char data[32];
-    int tag;
 } l2_block;
 
 extern struct L2Block L2Data[32*4*2];
