@@ -12,11 +12,13 @@
 //offset
 
 typedef struct AddressBits {
-    int Offset;
-    int Index;
     char* Tag;
+    char* Index;
+    char* Offset;
     int Addr;
 } Address;
+
+Address Constructor_Address(char* bitString);
 
 int * _convertAddressToBinary(int Address);
 

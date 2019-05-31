@@ -9,6 +9,7 @@
  int main(){
     printf("Implementation starts from here");
     int k = _convertAddressToBinary(2048);
+//     format_address(2048, 17, 6, 6, 5);
     //Initiate Memory
     //Initiate L1-Controller cache
     //Initiate L2 cache

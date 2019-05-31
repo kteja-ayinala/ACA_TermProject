@@ -14,6 +14,6 @@
 
 //extern struct Processor;
 
-void invokeProcessor(Processor* processor);
+//void invokeProcessor(Processor* processor);
 
 #endif //ACA_TERMPROJECT_PROCESSOR_H
