@@ -7,9 +7,9 @@
 #ifndef ACA_TERMPROJECT_BLOCK_H
 #define ACA_TERMPROJECT_BLOCK_H
 
-#include "Address/Address.h"
+#include "../Address/Address.h"
 
-typedef struct Block-Struct {
+typedef struct Block_Struct {
     int valid;
     char* tag;
     int dirty;

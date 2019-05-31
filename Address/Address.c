@@ -7,10 +7,11 @@
 //index
 //offset
 
+#include "Address.h"
 #include<stdio.h>
 #include<stdlib.h>
 
-int * convertAddressToBinary(int addr) {
+int * _convertAddressToBinary(int addr) {
     int n = addr;
     int bits = 17;
     int  i;

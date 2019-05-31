@@ -11,15 +11,13 @@
 //index
 //offset
 
-
-typedef struct Address {
+typedef struct AddressBits {
     int Offset;
     int Index;
-    int Tag;
+    char* Tag;
     int Addr;
 } Address;
 
-int convertAddressToBinary(Address);
-Address conAddress(char* bitString);
+int * _convertAddressToBinary(int Address);
 
 #endif //ACA_TERMPROJECT_ADDRESS_H
