@@ -22,6 +22,7 @@ void startProcessor(Processor *processor)
 
     while (!feof(f)) {
         Address addr;
+        int readLength;
         unsigned address; // CPU address
         int rw; //0 for CPU read and 1 for write
         char instruction[100]; //CPU instruction
@@ -31,12 +32,13 @@ void startProcessor(Processor *processor)
         if (!(strcmp(instruction, "CPURead"))) //check if the instruction is Read instruction
         {
             printf("\nreceived CPURead");
-            fscanf(f, "%d", &address);
+            fscanf(f, "%d %d", &address , &readLength);
             rw = 0;
+//            int readLength = &readLength;
             char* binaryAddress = convertToBinary(address);
 //            printf("\n convertToBinary check:%s", binaryAddress);
             addr = Invoke_Address(binaryAddress);
-            Instruction instruction = Invoke_Instruction(rw,addr,NULL);
+            Instruction instruction = Invoke_Instruction(rw,addr,NULL,readLength);
             Link link = Invoke_Link(instruction);
             enqueue(&link);
 //            display();
@@ -52,11 +54,11 @@ void startProcessor(Processor *processor)
         } else if (!(strcmp(instruction, "CPUWrite"))) // check if the instruction is Write
         {
             printf("\nreceived CPUWrite");
-            fscanf(f, "%d %[^\n]", &address, &value);
+            fscanf(f, "%d %d", &address, &value);
             rw = 1;
             char* bitString = convertToBinary(address);
             addr = Invoke_Address(bitString);
-            Instruction instruction = Invoke_Instruction(rw,addr,&value);
+            Instruction instruction = Invoke_Instruction(rw,addr,&value,NULL);
             Link link = Invoke_Link(instruction);
             enqueue(&link);
 //            display();

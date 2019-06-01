@@ -16,7 +16,7 @@ struct CacheBlock {
     bool validBit;
     bool dirtyBit;
 };
-struct CacheBlock cache[10];
+struct CacheBlock cache[4096];
 
 void cacheBlockInit(int position, char blockData[100]){
     cache[position].tag[0] = '0';
@@ -28,7 +28,7 @@ void cacheBlockInit(int position, char blockData[100]){
 }
 
 void create_memory(){
-    int tagLength = 0, indexLength = 12, offsetLength = 5, blockCount = 4, blockSize = 32, cpuAddress = 17;
+    int tagLength = 0, indexLength = 12, offsetLength = 5, blockCount = 4096, blockSize = 32, cpuAddress =17;
 
     for (int i = 0; i < blockCount; i++){
         char blockData[blockSize];
@@ -37,6 +37,7 @@ void create_memory(){
         }
         cacheBlockInit(i, blockData);
         cache[i].validBit = false;
+//        printf("%s",blockData);
     }
 
     printf("\n Memory Created");

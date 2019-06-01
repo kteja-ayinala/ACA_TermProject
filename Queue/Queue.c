@@ -70,8 +70,8 @@ void dequeue() {
     }
 
 
-Instruction Invoke_Instruction(int instructionNumber, Address address, char* data){
-    Instruction instruction = {instruction:instructionNumber, address:address, data:data};
+Instruction Invoke_Instruction(int instructionType, Address address, char* data,int readLength){
+    Instruction instruction = {instruction:instructionType, address:address, data:data, readLength:readLength };
     return instruction;
 }
 

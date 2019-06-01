@@ -4,6 +4,7 @@
 #include "Processor/Processor.h"
 #include "Memory/Memory.h"
 
+
 //
 // Created by Krishna Teja Ayinala on 2019-05-27.
 //
@@ -17,12 +18,11 @@
 //    enqueue("CPURead 5");
 //    enqueue("CPURead 6");
 //    dequeue();
+    printf("\n");
     display();
 //    format_address(2048, 17, 6, 6, 5);
     //Initiate L1-Controller cache
     //Initiate L2 cache
-
-
     return 0;
 }
 
