@@ -4,6 +4,8 @@
 
 #include<stdio.h>
 #include<stdbool.h>
+#include "Queue.h"
+#include "../Address/Address.h"
 
 #define MAXSIZE 64
 int queue[MAXSIZE];
@@ -26,12 +28,12 @@ int findSize(){
 }
 
 //function to add element to a queue
-void enqueue(int element){
+void enqueue(Link *link){
     if(!checkForOverflow()){
         if(q_start_index == -1)
             q_start_index = 0;
         q_end_index = q_end_index + 1;
-        queue[q_end_index] = element;
+        queue[q_end_index] = link;
         length++;
     }
 }
@@ -60,10 +62,20 @@ void dequeue() {
             printf("Queue is empty \n");
         else
         {
-            printf("Queue is : \n");
+//            printf("Queue is : \n");
             for (i = q_start_index; i <= q_end_index; i++)
                 printf("%d ", queue[i]);
             printf("\n");
         }
     }
 
+
+Instruction Invoke_Instruction(int instructionNumber, Address address, char* data){
+    Instruction instruction = {instruction:instructionNumber, address:address, data:data};
+    return instruction;
+}
+
+Link Invoke_Link(Instruction instruction){
+    Link link = {data:instruction};
+    return link;
+}

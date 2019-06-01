@@ -1,2 +1,3 @@
 CPURead 5
 CPURead 6
+CPUWrite 7 3

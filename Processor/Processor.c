@@ -7,6 +7,7 @@
 #include<stdio.h>
 #include <stdbool.h>
 #include<string.h>
+#include "../Queue/Queue.h"
 
 Processor Invoke_Processor(){
     Processor processor = {};
@@ -22,7 +23,7 @@ void startProcessor(Processor *processor)
     while (!feof(f)) {
         Address addr;
         unsigned address; // CPU address
-        bool rw; //0 for CPU read and 1 for write
+        int rw; //0 for CPU read and 1 for write
         char instruction[100]; //CPU instruction
         char *value; // for write operation
         fscanf(f, "%s", instruction);
@@ -32,8 +33,20 @@ void startProcessor(Processor *processor)
             printf("\nreceived CPURead");
             fscanf(f, "%d", &address);
             rw = 0;
-           // char* bitString = int2bin(address," ",0);
-            //addr = Invoke_Address(address);
+            char* binaryAddress = convertToBinary(address);
+//            printf("\n convertToBinary check:%s", binaryAddress);
+            addr = Invoke_Address(binaryAddress);
+            Instruction instruction = Invoke_Instruction(rw,addr,NULL);
+            Link link = Invoke_Link(instruction);
+            enqueue(&link);
+//            display();
+
+//            printf("Result: %d\n", link);
+
+//            fscanf(f, "%d %[^\n]", &address, &value);
+//            operation = 1;
+//            char* binaryAddress = convertToBinary(address);
+//            addressStruct = Constructor_Address(binaryAddress);
 
             // b)Queue instructions
         } else if (!(strcmp(instruction, "CPUWrite"))) // check if the instruction is Write
@@ -41,12 +54,16 @@ void startProcessor(Processor *processor)
             printf("\nreceived CPUWrite");
             fscanf(f, "%d %[^\n]", &address, &value);
             rw = 1;
-//                addr = Invoke_Address(address);
+            char* bitString = convertToBinary(address);
+            addr = Invoke_Address(bitString);
+            Instruction instruction = Invoke_Instruction(rw,addr,&value);
+            Link link = Invoke_Link(instruction);
+            enqueue(&link);
+//            display();
+
+//            printf("Result: %d\n", value);
             // b)Queue instructions
 
-        }
-        if (rw == 0) {
-            break;
         }
     }
 }

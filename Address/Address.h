@@ -23,7 +23,9 @@ typedef struct AddressBits {
 Address Invoke_Address(char *bitString);
 
 char* GetChar(char* originalString,int start,int length,char* substring);
-int fromBinary(char *s);
-char* int2bin(int a, char *buffer, int buf_size);
-
+int convertFromBinary(char *s);
+//char* convertToBinary(int a, char *buffer, int buf_size);
+char *convertToBinary(int n);
+char* format_address(int address, int blockSize, int tagLength, int indexLength, int offsetLength);
+//char *convertToBinary(int n);
 #endif //ACA_TERMPROJECT_ADDRESS_H
