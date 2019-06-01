@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "Address/Address.h"
 #include "Memory/Memory.h"
+#include "Queue/Queue.h"
 #include "Processor/Processor.h"
 
 //
@@ -14,8 +15,13 @@
 
     Processor processor = Invoke_Processor();
     processor.startProcessor();
+enqueue(4);
+enqueue(5);
+enqueue(6);
+dequeue();
+display();
 
-     printf("\n In Processor");
+
 
      format_address(2048, 17, 6, 6, 5);
 

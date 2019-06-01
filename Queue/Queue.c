@@ -47,7 +47,8 @@ void dequeue() {
             q_start_index = -1;
             q_end_index = -1;
         }
-        printf("dequeued element is : %d\n", queue[q_start_index]);
+        printf("\n dequeued element is : %d\n", queue[q_start_index]);
+        q_start_index += 1;
         length--;
     }
 }

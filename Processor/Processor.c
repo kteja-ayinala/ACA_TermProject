@@ -17,7 +17,7 @@ Processor Invoke_Processor(){
 void startProcessor(Processor *processor)
 {
     // a)Read input file
-    FILE *f = fopen("/Users/sindhurabonthu/CLionProjects/ACA_TermProject/Processor/input.txt", "r"); //take input file
+    FILE *f = fopen("/Users/krishnatejaayinala/CLionProjects/ACA-TermProject/Processor/input.txt", "r"); //take input file
 
     while (!feof(f)) {
         Address addr;

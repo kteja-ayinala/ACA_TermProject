@@ -7,6 +7,7 @@
 
 
 #include "stdbool.h"
+
 typedef struct Queue_Struct
 {
     int capacity;
