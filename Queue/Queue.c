@@ -5,43 +5,64 @@
 #include<stdio.h>
 #include<stdbool.h>
 
-#define MAX 100
-int queue[MAX];
+#define MAXSIZE 64
+int queue[MAXSIZE];
 int length = 0;
 int q_start_index = -1;
 int q_end_index = -1;
 
 //function to check if queue is empty
 bool queueEmpty(){
-    return length =0;
+    return q_start_index == -1 ;
 }
 //function to check if queue is full
-bool isFull(){
-    return length=MAX;
+bool checkForOverflow(){
+    return q_start_index == 0  && q_end_index == MAXSIZE -1;
 }
 
 //function to get length of queue
-int getLength(){
+int findSize(){
     return length;
 }
 
 //function to add element to a queue
 void enqueue(int element){
-    if(!isFull()){
-        if(q_end_index == MAX-1){
-            q_end_index = -1;
-        }
-        queue[++q_end_index] = element;
+    if(!checkForOverflow()){
+        if(q_start_index == -1)
+            q_start_index = 0;
+        q_end_index = q_end_index + 1;
+        queue[q_end_index] = element;
         length++;
     }
 }
+
 //function to remove an element from queue
-int dequeue(){
-    int element = queue[q_start_index++];
-    if(q_start_index==MAX)
-    {
-        q_start_index = 0;
+void dequeue() {
+    if (!queueEmpty) {
+        printf("Queue empty\n");
+        return;
+    } else {
+        int element = queue[q_start_index];
+        if (q_start_index == q_end_index) {
+            q_start_index = -1;
+            q_end_index = -1;
+        }
+        printf("dequeued element is : %d\n", queue[q_start_index]);
+        length--;
     }
-    length--;
-    return  element;
 }
+//function to display elements in the queue
+    void display()
+    {
+        int i;
+        if (q_start_index == - 1)
+            printf("Queue is empty \n");
+        else
+        {
+            printf("Queue is : \n");
+            for (i = q_start_index; i <= q_end_index; i++)
+                printf("%d ", queue[i]);
+            printf("\n");
+        }
+    }
+

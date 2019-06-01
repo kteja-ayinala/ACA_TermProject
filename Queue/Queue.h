@@ -6,6 +6,7 @@
 #define ACA_TERMPROJECT_QUEUE_H
 
 
+#include "stdbool.h"
 typedef struct Queue_Struct
 {
     int capacity;
@@ -14,9 +15,17 @@ typedef struct Queue_Struct
     int q_end_index;
 }Queue;
 
-//queue size
-//enqueque
-//dequeue
+bool queueEmpty(); //queue size Status
+bool checkForOverflow(); //queue size Status
+
+int findSize();    //queue size
+
+void enqueue(int element);  //enqueue
+void dequeue(); //dequeue
+void display(); // view queue elements
+
+
+
 //state info
 #endif //ACA_TERMPROJECT_QUEUE_H
 
