@@ -9,17 +9,17 @@
 #include "../Block/Block.h"
 
 typedef struct Memory_Struct {
-    int tagLength;
-    int indexLength;
-    int offsetLength;
-    int cpuBits;
-    int blockCount;
-    int blockSize;
+    int memory_Tag;
+    int memory_Index;
+    int memory_Offset;
+    int memory_CpuBits;
+    int memory_BlockCount;
+    int memory_BlockSize;
     Queue queueToMemory;
     Queue queueFromMemory;
     Block memoryBlock;
 } Memory;
 
-void loadInitialData();
+void create_memory();
 
 #endif //ACA_TERMPROJECT_MEMORY_H

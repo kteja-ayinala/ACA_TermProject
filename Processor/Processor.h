@@ -10,7 +10,7 @@ typedef struct Processor_Struct{
     void (*startProcessor)();
 } Processor;
 
-Processor Invoke_Processor();
+Processor invoke_Processor();
 
 void startProcessor(Processor *processor);
 

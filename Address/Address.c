@@ -108,12 +108,12 @@ Address Invoke_Address(char *binaryAddress){
     int Tag = convertFromBinary(TagString);
     int Index = convertFromBinary(IndexString);
     int Offset = convertFromBinary(OffsetString);
-    int addr = convertFromBinary(binaryAddress);
+    int Addr = convertFromBinary(binaryAddress);
 //    printf("\ntag %d", Tag);
 //    printf("Index %d", Index);
 //    printf("Offset %d", Offset);
-//    printf("bitStringValue %d", bitStringValue);
-    Address address = {Tag:Tag, Index:Index, Offset:Offset, Addr:addr};
+//    printf("addr %d", Addr);
+    Address address = {Tag:Tag, Index:Index, Offset:Offset, Addr:Addr};
     return address;
 }
 

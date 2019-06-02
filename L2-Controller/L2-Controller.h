@@ -5,4 +5,27 @@
 #ifndef ACA_TERMPROJECT_L2_CONTROLLER_H
 #define ACA_TERMPROJECT_L2_CONTROLLER_H
 
+
+#include "../Address/Address.h"
+
+typedef struct L2Controller_Struct{
+    int l2_Tag ;
+    int l2_Index;
+    int l2_Offset;
+    int l2_BlockCount;
+    int l2_BlockSize;
+    int l2_CpuAddress;
+    void (*l2_Write)(Address address, int value);
+    int (*l2_Read)(Address address);
+}L2Controller;
+
+L2Controller invoke_l2Controller();
+
+int l2_Read(Address addr);
+void l2_Write(Address addr, int value);
+
+
+
+
+
 #endif //ACA_TERMPROJECT_L2_CONTROLLER_H

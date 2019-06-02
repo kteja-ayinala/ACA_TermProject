@@ -28,11 +28,11 @@ void cacheBlockInit(int position, char blockData[100]){
 }
 
 void create_memory(){
-    int tagLength = 0, indexLength = 12, offsetLength = 5, blockCount = 4096, blockSize = 32, cpuAddress =17;
+    int memory_Tag = 0, memory_Index = 12, memory_Offset = 5, memory_BlockCount = 4096, memory_BlockSize = 32, memory_CpuBits =17;
 
-    for (int i = 0; i < blockCount; i++){
-        char blockData[blockSize];
-        for (int j = 0;j < blockSize;j++){
+    for (int i = 0; i < memory_BlockCount; i++){
+        char blockData[memory_BlockSize];
+        for (int j = 0;j < memory_BlockSize;j++){
             blockData[j] = (char) (65 + (j%26));
         }
         cacheBlockInit(i, blockData);

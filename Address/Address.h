@@ -12,9 +12,9 @@
 //offset
 
 typedef struct AddressBits {
-    char* Tag;
-    char* Index;
-    char* Offset;
+    int Tag;
+    int Index;
+    int Offset;
     int Addr;
 } Address;
 

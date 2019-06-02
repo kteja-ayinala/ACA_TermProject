@@ -9,7 +9,7 @@
 #include<string.h>
 #include "../Queue/Queue.h"
 
-Processor Invoke_Processor(){
+Processor invoke_Processor(){
     Processor processor = {};
     processor.startProcessor = &startProcessor;
     return processor;
@@ -39,16 +39,12 @@ void startProcessor(Processor *processor)
 //            printf("\n convertToBinary check:%s", binaryAddress);
             addr = Invoke_Address(binaryAddress);
             Instruction instruction = Invoke_Instruction(rw,addr,NULL,readLength);
-            Link link = Invoke_Link(instruction);
-            enqueue(&link);
+//            Link link = Invoke_Link(instruction);
+//            enqueue(&link);
+enqueue(instruction);
 //            display();
 
-//            printf("Result: %d\n", link);
 
-//            fscanf(f, "%d %[^\n]", &address, &value);
-//            operation = 1;
-//            char* binaryAddress = convertToBinary(address);
-//            addressStruct = Constructor_Address(binaryAddress);
 
             // b)Queue instructions
         } else if (!(strcmp(instruction, "CPUWrite"))) // check if the instruction is Write
@@ -59,11 +55,10 @@ void startProcessor(Processor *processor)
             char* bitString = convertToBinary(address);
             addr = Invoke_Address(bitString);
             Instruction instruction = Invoke_Instruction(rw,addr,&value,NULL);
-            Link link = Invoke_Link(instruction);
-            enqueue(&link);
-//            display();
+//            Link link = Invoke_Link(instruction);
+//            enqueue(&link);
+        enqueue(instruction);
 
-//            printf("Result: %d\n", value);
             // b)Queue instructions
 
         }

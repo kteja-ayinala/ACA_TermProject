@@ -42,8 +42,9 @@ bool checkForOverflow(); //queue size Status
 
 int findSize();    //queue size
 
-void enqueue(Link *link);  //enqueue
-void dequeue(); //dequeue
+//void enqueue(Link *link);  //enqueue
+void enqueue(Instruction instruction);
+Instruction dequeue(); //dequeue
 void display(); // view queue elements
 //state info
 #endif //ACA_TERMPROJECT_QUEUE_H

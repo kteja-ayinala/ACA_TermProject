@@ -3,6 +3,8 @@
 #include "Queue/Queue.h"
 #include "Processor/Processor.h"
 #include "Memory/Memory.h"
+#include "L1-Controller/L1-Controller.h"
+#include "L2-Controller/L2-Controller.h"
 
 
 //
@@ -11,15 +13,26 @@
 
  int main(){
     printf("Implementation starts from here");
-     create_memory();     //Initiate Memory
-    Processor processor = Invoke_Processor();       //Initiate processor
+//     create_memory();     //Initiate Memory
+    Processor processor = invoke_Processor();       //Initiate processor
     processor.startProcessor();
+     L1Controller l1Controller = invoke_l1Controller();
+     Instruction k = dequeue();
+     l1Controller.l1_Read(k.address);
+     L2Controller l2Controller = invoke_l2Controller();
+
+
 //    enqueue("CPURead 4");
 //    enqueue("CPURead 5");
 //    enqueue("CPURead 6");
-//    dequeue();
-    printf("\n");
-    display();
+
+//    printf("\n");
+//    display();
+//    for(int i =0 ; i < findSize(); i++){
+//
+//    }
+
+
 //    format_address(2048, 17, 6, 6, 5);
     //Initiate L1-Controller cache
     //Initiate L2 cache

@@ -8,7 +8,7 @@
 #include "../Address/Address.h"
 
 #define MAXSIZE 64
-int queue[MAXSIZE];
+Instruction queue[MAXSIZE];
 int length = 0;
 int q_start_index = -1;
 int q_end_index = -1;
@@ -28,30 +28,38 @@ int findSize(){
 }
 
 //function to add element to a queue
-void enqueue(Link *link){
+void enqueue(Instruction instruction){
+//void enqueue(Link *link){
     if(!checkForOverflow()){
         if(q_start_index == -1)
             q_start_index = 0;
         q_end_index = q_end_index + 1;
-        queue[q_end_index] = link;
+        queue[q_end_index] = instruction;
         length++;
     }
 }
 
+
+
+
 //function to remove an element from queue
-void dequeue() {
+Instruction dequeue() {
+//    Link *link;
+Instruction instruction;
     if (!queueEmpty) {
+        Instruction emptyInstruction = {data:NULL};
         printf("Queue empty\n");
-        return;
+        return emptyInstruction;
     } else {
-        int element = queue[q_start_index];
+        instruction = queue[q_start_index];
         if (q_start_index == q_end_index) {
             q_start_index = -1;
             q_end_index = -1;
         }
-        printf("\n dequeued element is : %d\n", queue[q_start_index]);
+//        printf("\n dequeued element is : %d\n", queue[q_start_index]);
         q_start_index += 1;
         length--;
+        return instruction;
     }
 }
 //function to display elements in the queue
