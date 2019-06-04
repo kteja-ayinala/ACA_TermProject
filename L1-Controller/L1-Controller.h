@@ -9,12 +9,12 @@
 #include "../Address/Address.h"
 
 typedef struct L1Controller_Struct{
-    int l1_Tag;
-    int l1_Index;
-    int l1_Offset;
-     int l1_BlockCount;
-    int l1_BlockSize;
-    int l1_CpuAddress;
+//    int l1_Tag;
+//    int l1_Index;
+//    int l1_Offset;
+//     int l1_BlockCount;
+//    int l1_BlockSize;
+//    int l1_CpuAddress;
     void (*l1_Write)(Address address, int value);
     int (*l1_Read)(Address address);
 }L1Controller;
@@ -23,9 +23,6 @@ L1Controller invoke_l1Controller();
 
 int l1_Read(Address addr);
 void l1_Write(Address addr, int value);
-
-
-
 
 
 
