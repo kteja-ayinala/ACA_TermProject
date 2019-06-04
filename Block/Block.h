@@ -8,6 +8,7 @@
 #define ACA_TERMPROJECT_BLOCK_H
 
 #include "../Address/Address.h"
+#include "../Cache-Line/CacheLine.h"
 
 typedef struct Block_Struct {
     int validBit;
@@ -16,7 +17,9 @@ typedef struct Block_Struct {
 //    int offset;
     Address address;
     char * data;
-
+    int blockCount;
+    CacheLine** cacheLines; //number in array is the number of cache lines in the block
+    CacheLine *HashTable;
 
     void (*setCacheLines)(struct BlockTag block, struct CacheLineTag* cacheLines[]);
     bool (*isInBlock)(Address address);
