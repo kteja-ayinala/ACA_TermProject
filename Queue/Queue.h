@@ -10,13 +10,7 @@
 #include "../Address/Address.h"
 
 
-typedef struct Queue_Struct
-{
-    int capacity;
-    int current_size;
-    int q_start_index;
-    int q_end_index;
-}Queue;
+
 
 typedef struct Instruction_Struct{
     int cc;
@@ -28,6 +22,22 @@ typedef struct Instruction_Struct{
 
 Instruction Invoke_Instruction(int instructionNumber, Address address, char* data, int readLength);
 
+
+typedef struct Queue_Struct
+{
+    int capacity;
+    int current_size;
+    int q_start_index;
+    int q_end_index;
+    bool (*enqueue)(Instruction instruction);
+    Instruction (*dequeue)();
+    bool (*queueEmpty)();
+    void (*display)();
+    int (*findSize)();
+
+}Queue;
+
+Queue Invoke_Queue();
 
 typedef struct link_Struct {
     Instruction data;
@@ -46,6 +56,7 @@ int findSize();    //queue size
 void enqueue(Instruction instruction);
 Instruction dequeue(); //dequeue
 void display(); // view queue elements
+
 //state info
 #endif //ACA_TERMPROJECT_QUEUE_H
 

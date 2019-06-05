@@ -4,7 +4,15 @@
 
 #include "CacheLine.h"
 
-CacheLine invoke_CacheLine(Address address, char* data){
+int validBit;
+int dirtyBit;
+int tag;
+int offset;
+Address address;
+char data[4];
+
+CacheLine invoke_CacheLine(Address address, char data[4]){
     CacheLine cacheLine = {address:address, data:data};
     return cacheLine;
 }
+

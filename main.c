@@ -14,10 +14,11 @@
  int main(){
     printf("Implementation starts from here");
      create_memory();     //Initiate Memory
+     Processor processor = invoke_Processor();       //Initiate processor
+     processor.startProcessor();
      L1Controller l1Controller = invoke_l1Controller();
      L2Controller l2Controller = invoke_l2Controller();
-    Processor processor = invoke_Processor();       //Initiate processor
-    processor.startProcessor();
+
 
      Instruction k = dequeue();
      l1Controller.l1_Read(k.address);

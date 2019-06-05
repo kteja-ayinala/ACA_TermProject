@@ -8,15 +8,19 @@
 #include "../Address/Address.h"
 #include <stdio.h>
 #include "../uthash-master/include/uthash.h"
+#include "../Block/Block.h"
 
 
-typedef struct CacheLineTag{
+typedef struct CacheLine_Struct {
+    int validBit;
+    int dirtyBit;
+    int tag;
+    int offset;
     Address address;
-    char* data;
-    UT_hash_handle hashTable;
-} CacheLine;
+    char data[4];
+}CacheLine;
 
-CacheLine invoke_CacheLine(Address address,char* data);
 
+CacheLine invoke_CacheLine(Address address, char data[4]);
 
 #endif //ACA_TERMPROJECT_CACHELINE_H

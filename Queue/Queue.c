@@ -13,6 +13,17 @@ int length = 0;
 int q_start_index = -1;
 int q_end_index = -1;
 
+
+Queue Invoke_Queue(){
+    Queue queue = {capacity: 100, current_size:0, q_start_index:-1, queue.q_end_index = -1};
+    queue.enqueue = &enqueue;
+    queue.dequeue = &dequeue;
+    queue.display = &display;
+    queue.queueEmpty = &queueEmpty;
+    queue.findSize = &findSize;
+    return queue;
+}
+
 //function to check if queue is empty
 bool queueEmpty(){
     return q_start_index == -1 ;

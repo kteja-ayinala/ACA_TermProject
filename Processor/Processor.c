@@ -41,7 +41,7 @@ void startProcessor(Processor *processor)
             Instruction instruction = Invoke_Instruction(rw,addr,NULL,readLength);
 //            Link link = Invoke_Link(instruction);
 //            enqueue(&link);
-enqueue(instruction);
+    enqueue(instruction);
 //            display();
 
 

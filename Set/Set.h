@@ -5,15 +5,27 @@
 #ifndef ACA_TERMPROJECT_SET_H
 #define ACA_TERMPROJECT_SET_H
 
-typedef struct Set-Struct {
-    int BlockCount;
-    Address addr;
+
+#include <stdbool.h>
+#include "stdio.h"
+#include "../Address/Address.h"
+#include "../uthash-master/include/uthash.h"
+
+
+typedef struct Set_Struct {
+    int numberOfBlocks;
+    Address address;
 }Set;
 
-void addBlockData();
-void removeBlockData();
+Set invoke_Set(int numberOfBlocks, Address address);
+
+
+void checkIfExists(Address address);
+void addBlockData(Address address);
+void removeBlockData(Address address);
 void clearSet();
 
-bool checkIfExist();
+void displayBlocks(Address address);
+
 
 #endif //ACA_TERMPROJECT_SET_H
