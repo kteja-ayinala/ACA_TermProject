@@ -2,17 +2,28 @@
 // Created by Krishna Teja Ayinala on 2019-05-28.
 //
 
-
+#include "../Address/Address.h"
 #include "L2-Data.h"
 
-struct L2Block L2Data[256];
 
-void initL2Data()
-{
-    int i;
-    for (i = 0; i < 256; i++)
-    {
-        L2Data[i].valid = 0;
-        L2Data[i].dirty = 0;
+int l2_Tag ;
+int l2_Index;
+int l2_Offset;
+int l2_blocks;
+int l2_BlockSize;
+int l2_CpuBits;
+Block Cache[64];
+
+Queue queueL2DToL2C;
+
+L2Data invoke_L2Data(){
+    L2Data l2D = {l2_Tag:3, l2_Index:9, l2_Offset:5, l2_blocks:512, l2_BlockSize:32, l2_CpuBits:17};
+    for (int i = 0; i < 512; i++) {
+        Cache[i] = invoke_Block();
+        Cache[i].validBit = 0;
     }
+    queueL2DToL2C = Invoke_Queue;
+    printf("\n L2D invoked");
+    return l2D;
 }
+

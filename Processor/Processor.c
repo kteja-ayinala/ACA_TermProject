@@ -9,9 +9,12 @@
 #include<string.h>
 #include "../Queue/Queue.h"
 
+Queue processorQueue;
+
 Processor invoke_Processor(){
     Processor processor = {};
     processor.startProcessor = &startProcessor;
+    processorQueue = Invoke_Queue();
     return processor;
 }
 
@@ -41,7 +44,7 @@ void startProcessor(Processor *processor)
             Instruction instruction = Invoke_Instruction(rw,addr,NULL,readLength);
 //            Link link = Invoke_Link(instruction);
 //            enqueue(&link);
-    enqueue(instruction);
+            processorQueue.enqueue(instruction);
 //            display();
 
 
@@ -57,7 +60,7 @@ void startProcessor(Processor *processor)
             Instruction instruction = Invoke_Instruction(rw,addr,&value,NULL);
 //            Link link = Invoke_Link(instruction);
 //            enqueue(&link);
-        enqueue(instruction);
+            processorQueue.enqueue(instruction);
 
             // b)Queue instructions
 

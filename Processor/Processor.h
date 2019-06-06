@@ -6,8 +6,11 @@
 #define ACA_TERMPROJECT_PROCESSOR_H
 
 
+#include "../Queue/Queue.h"
+
 typedef struct Processor_Struct{
     void (*startProcessor)();
+//    Queue processorQueue;;
 } Processor;
 
 Processor invoke_Processor();

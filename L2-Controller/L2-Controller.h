@@ -12,9 +12,9 @@ typedef struct L2Controller_Struct{
     int l2_Tag ;
     int l2_Index;
     int l2_Offset;
-    int l2_BlockCount;
+    int l2_blocks;
     int l2_BlockSize;
-    int l2_CpuAddress;
+    int l2_CpuBits;
     void (*l2_Write)(Address address, int value);
     int (*l2_Read)(Address address);
 }L2Controller;
@@ -29,3 +29,4 @@ void l2_Write(Address addr, int value);
 
 
 #endif //ACA_TERMPROJECT_L2_CONTROLLER_H
+

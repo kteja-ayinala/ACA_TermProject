@@ -8,6 +8,7 @@
 
 #include "stdbool.h"
 #include "../Address/Address.h"
+#include "Queue.h"
 
 
 
@@ -34,7 +35,6 @@ typedef struct Queue_Struct
     bool (*queueEmpty)();
     void (*display)();
     int (*findSize)();
-
 }Queue;
 
 Queue Invoke_Queue();

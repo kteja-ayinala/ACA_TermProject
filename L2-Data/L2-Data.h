@@ -5,16 +5,18 @@
 #ifndef ACA_TERMPROJECT_L2_DATA_H
 #define ACA_TERMPROJECT_L2_DATA_H
 
-typedef struct L2Block
-{
-    int valid;
-    int dirty;
-    char * tag;
+#include "../Address/Address.h"
+#include "L2-Data.h"
+
+typedef struct L2_Struct {
+    int l2_Tag;
+    int l2_Index;
+    int l2_Offset;
+    int l2_SetCount;
+    int l2_BlockSize;
+    int l2_CpuBits;
     unsigned char data[32];
-} l2_block;
+} L2Data;
 
-extern struct L2Block L2Data[32*4*2];
-
-void initL2Data();
-
+L2Data invoke_L2Data();
 #endif //ACA_TERMPROJECT_L2_DATA_H

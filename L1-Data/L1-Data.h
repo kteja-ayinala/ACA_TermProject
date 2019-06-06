@@ -4,15 +4,19 @@
 #ifndef ACA_TERMPROJECT_L1_DATA_H
 #define ACA_TERMPROJECT_L1_DATA_H
 
-typedef struct L1Block {
-    int valid;
-    int dirty;
-    char* tag;
+
+#include "../Address/Address.h"
+
+typedef struct L1_Struct {
+    int l1_Tag;
+    int l1_Index;
+    int l1_Offset;
+    int l1_SetCount;
+    int l1_BlockSize;
+    int l1_CpuBits;
     unsigned char data[32];
-} l1_block;
+} L1Data;
 
-extern struct L1Block L1Data[32 * 4];
-
-void initL1Data();
+L1Data invoke_L1Data();
 
 #endif //ACA_TERMPROJECT_L1_DATA_H

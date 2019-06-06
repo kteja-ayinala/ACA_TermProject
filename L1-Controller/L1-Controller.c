@@ -5,6 +5,8 @@
 #include "L1-Controller.h"
 #include "stdio.h"
 #include "Block.h"
+#include "../Queue/Queue.h"
+
 int l1_Tag ;
 int l1_Index;
 int l1_Offset;
@@ -15,6 +17,9 @@ Block way1[64];
 Block way2[64];
 Block way3[64];
 Block way4[64];
+Queue queueL1CToL1D;
+Queue queueL1CToL2C;
+Queue queueL1CToProcessor;
 
 
 L1Controller invoke_l1Controller(){
@@ -29,6 +34,10 @@ L1Controller invoke_l1Controller(){
         way4[i] = invoke_Block();
         way4[i].validBit = 0;
     }
+    queueL1CToL1D = Invoke_Queue();
+    queueL1CToL2C = Invoke_Queue();
+    queueL1CToProcessor = Invoke_Queue();
+
     l1Controller.l1_Read = &l1_Read;
     l1Controller.l1_Write = &l1_Write;
     printf("\n L1C invoked");
