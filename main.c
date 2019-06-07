@@ -18,11 +18,24 @@
     printf("Implementation starts from here");
      create_memory();     //Initiate Memory
      Processor processor = invoke_Processor();       //Initiate processor
-     processor.startProcessor();
+     processor.startProcessor(&processor);
      L1Controller l1Controller = invoke_l1Controller();
      L1Data l1Data= invoke_L1Data();
      L2Controller l2Controller = invoke_l2Controller();
      L2Data l2Data= invoke_L2Data();
+
+     int counter = 0;
+
+     do{
+         counter++;
+         if(processor.processorQueue.length!=0){
+             Instruction k = processor.processorQueue.dequeue(&processor.processorQueue);
+             processor.processorQueue.display(&processor.processorQueue);
+             printf("I am In " );
+         }
+//         processor->processorQueue.enqueue(&processor->processorQueue, &instruction);
+
+     }while(counter<3);
 
 //     Instruction k = dequeue();
 //     l1Controller.l1_Read(k.address);

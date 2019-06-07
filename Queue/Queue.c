@@ -7,15 +7,15 @@
 #include "Queue.h"
 #include "../Address/Address.h"
 
-#define MAXSIZE 64
-Instruction queue[MAXSIZE];
-int length = 0;
-int q_start_index = -1;
-int q_end_index = -1;
+#define MAXSIZE 100
+//Instruction queue[MAXSIZE];
+//int length = 0;
+//int q_start_index = -1;
+//int q_end_index = -1;
 
 
 Queue Invoke_Queue(){
-    Queue queue = {capacity: 100, current_size:0, q_start_index:-1, queue.q_end_index = -1};
+    Queue queue = {capacity: 100, current_size:0, length:0, q_start_index:-1, queue.q_end_index = -1};
     queue.enqueue = &enqueue;
     queue.dequeue = &dequeue;
     queue.display = &display;
@@ -25,28 +25,28 @@ Queue Invoke_Queue(){
 }
 
 //function to check if queue is empty
-bool queueEmpty(){
-    return q_start_index == -1 ;
+bool queueEmpty(Queue *queue){
+    return queue->q_start_index == -1 ;
 }
 //function to check if queue is full
-bool checkForOverflow(){
-    return q_start_index == 0  && q_end_index == MAXSIZE -1;
+bool checkForOverflow(Queue *queue){
+    return queue->q_start_index == 0  && queue->q_end_index== MAXSIZE -1;
 }
 
 //function to get length of queue
-int findSize(){
-    return length;
+int findSize(Queue *queue){
+    return queue->length;
 }
 
 //function to add element to a queue
-void enqueue(Instruction instruction){
+void enqueue(Queue *queue, Instruction *instruction){
 //void enqueue(Link *link){
-    if(!checkForOverflow()){
-        if(q_start_index == -1)
-            q_start_index = 0;
-        q_end_index = q_end_index + 1;
-        queue[q_end_index] = instruction;
-        length++;
+    if(!checkForOverflow(&queue)){
+        if(queue->q_start_index == -1)
+            queue->q_start_index = 0;
+        queue->q_end_index = queue->q_end_index + 1;
+        queue->varray[queue->q_end_index] = *instruction;
+        queue->length++;
     }
 }
 
@@ -54,7 +54,7 @@ void enqueue(Instruction instruction){
 
 
 //function to remove an element from queue
-Instruction dequeue() {
+Instruction dequeue(Queue *queue) {
 //    Link *link;
 Instruction instruction;
     if (!queueEmpty) {
@@ -62,27 +62,27 @@ Instruction instruction;
         printf("Queue empty\n");
         return emptyInstruction;
     } else {
-        instruction = queue[q_start_index];
-        if (q_start_index == q_end_index) {
-            q_start_index = -1;
-            q_end_index = -1;
+        instruction = queue->varray[queue->q_start_index];
+        if (queue->q_start_index == queue->q_end_index) {
+            queue->q_start_index = -1;
+            queue->q_end_index = -1;
         }
 //        printf("\n dequeued element is : %d\n", queue[q_start_index]);
-        q_start_index += 1;
-        length--;
+        queue->q_start_index += 1;
+        queue->length--;
         return instruction;
     }
 }
 //function to display elements in the queue
-    void display()
+    void display(Queue *queue)
     {
         int i;
-        if (q_start_index == - 1)
+        if ( queue->q_start_index == - 1)
             printf("Queue is empty \n");
         else
         {
 //            printf("Queue is : \n");
-            for (i = q_start_index; i <= q_end_index; i++)
+            for (i =  queue->q_start_index; i <=  queue->q_end_index; i++)
                 printf("%d ", queue[i]);
             printf("\n");
         }

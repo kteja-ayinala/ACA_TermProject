@@ -30,11 +30,13 @@ typedef struct Queue_Struct
     int current_size;
     int q_start_index;
     int q_end_index;
-    bool (*enqueue)(Instruction instruction);
-    Instruction (*dequeue)();
-    bool (*queueEmpty)();
-    void (*display)();
-    int (*findSize)();
+    int length;
+    void (*enqueue)(struct Queue_Struct *queue, Instruction *instruction);
+    Instruction (*dequeue)(struct Queue_Struct *queue);
+    bool (*queueEmpty)(struct Queue_Struct *queue);
+    void (*display)(struct Queue_Struct *queue);
+    int (*findSize)(struct Queue_Struct *queue);
+    Instruction varray[];
 }Queue;
 
 Queue Invoke_Queue();
@@ -47,15 +49,15 @@ typedef struct link_Struct {
 Link Invoke_Link(Instruction instruction);
 
 
-bool queueEmpty(); //queue size Status
-bool checkForOverflow(); //queue size Status
+bool queueEmpty(Queue *queue); //queue size Status
+bool checkForOverflow(Queue *queue); //queue size Status
 
-int findSize();    //queue size
+int findSize(Queue *queue);    //queue size
 
 //void enqueue(Link *link);  //enqueue
-void enqueue(Instruction instruction);
-Instruction dequeue(); //dequeue
-void display(); // view queue elements
+void enqueue(Queue *queue, Instruction *instruction);
+Instruction dequeue(Queue *queue); //dequeue
+void display(Queue *queue); // view queue elements
 
 //state info
 #endif //ACA_TERMPROJECT_QUEUE_H

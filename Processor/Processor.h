@@ -9,8 +9,8 @@
 #include "../Queue/Queue.h"
 
 typedef struct Processor_Struct{
-    void (*startProcessor)();
-//    Queue processorQueue;;
+    void (*startProcessor)(struct Processor *processor);
+    Queue processorQueue;;
 } Processor;
 
 Processor invoke_Processor();

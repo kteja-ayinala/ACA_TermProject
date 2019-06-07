@@ -14,7 +14,8 @@ Queue processorQueue;
 Processor invoke_Processor(){
     Processor processor = {};
     processor.startProcessor = &startProcessor;
-    processorQueue = Invoke_Queue();
+    Queue queue = Invoke_Queue();
+    processor.processorQueue = queue;
     return processor;
 }
 
@@ -42,11 +43,11 @@ void startProcessor(Processor *processor)
 //            printf("\n convertToBinary check:%s", binaryAddress);
             addr = Invoke_Address(binaryAddress);
             Instruction instruction = Invoke_Instruction(rw,addr,NULL,readLength);
-//            Link link = Invoke_Link(instruction);
-//            enqueue(&link);
-            processorQueue.enqueue(instruction);
-//            display();
+//            Queue q = processor->processorQueue;
+            processor->processorQueue.enqueue(&processor->processorQueue, &instruction);
+//            printf("\ncur size%d", processor->processorQueue.length);
 
+//            display();
 
 
             // b)Queue instructions
@@ -58,9 +59,9 @@ void startProcessor(Processor *processor)
             char* bitString = convertToBinary(address);
             addr = Invoke_Address(bitString);
             Instruction instruction = Invoke_Instruction(rw,addr,&value,NULL);
-//            Link link = Invoke_Link(instruction);
-//            enqueue(&link);
-            processorQueue.enqueue(instruction);
+            processor->processorQueue.enqueue(&processor->processorQueue, &instruction);
+//            printf("\ncur size%d", processor->processorQueue.findSize(&processor->processorQueue));
+
 
             // b)Queue instructions
 
