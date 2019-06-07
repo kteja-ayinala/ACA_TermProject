@@ -62,7 +62,6 @@ void startProcessor(Processor *processor)
             processor->processorQueue.enqueue(&processor->processorQueue, &instruction);
 //            printf("\ncur size%d", processor->processorQueue.findSize(&processor->processorQueue));
 
-
             // b)Queue instructions
 
         }

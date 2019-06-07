@@ -16,7 +16,7 @@
 
  int main(){
     printf("Implementation starts from here");
-     create_memory();     //Initiate Memory
+     Invoke_memory();     //Initiate Memory
      Processor processor = invoke_Processor();       //Initiate processor
      processor.startProcessor(&processor);
      L1Controller l1Controller = invoke_l1Controller();
