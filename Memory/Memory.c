@@ -29,7 +29,7 @@ void cacheBlockInit(int position, char blockData[100]){
     memcpy(cache[position].eachCellData, blockData, sizeof cache[position].eachCellData);
 }
 
-void create_memory(){
+void Invoke_memory(){
     int memory_Tag = 0, memory_Index = 12, memory_Offset = 5, memory_BlockCount = 4096, memory_BlockSize = 32, memory_CpuBits =17;
     queueMemoryToL2C = Invoke_Queue();
     for (int i = 0; i < memory_BlockCount; i++){

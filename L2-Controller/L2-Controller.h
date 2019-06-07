@@ -6,7 +6,9 @@
 #define ACA_TERMPROJECT_L2_CONTROLLER_H
 
 
+
 #include "../Address/Address.h"
+#include "../Queue/Queue.h"
 
 typedef struct L2Controller_Struct{
     int l2_Tag ;
@@ -17,6 +19,9 @@ typedef struct L2Controller_Struct{
     int l2_CpuBits;
     void (*l2_Write)(Address address, int value);
     int (*l2_Read)(Address address);
+    Queue queueL2CToL2D;
+    Queue queueL2CToM;
+    Queue queueL2CToL1C;
 }L2Controller;
 
 L2Controller invoke_l2Controller();

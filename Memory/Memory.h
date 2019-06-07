@@ -18,8 +18,9 @@ typedef struct Memory_Struct {
     Queue queueToMemory;
     Queue queueFromMemory;
     Block memoryBlock;
+    Queue queueMemoryToL2C;
 } Memory;
 
-void create_memory();
+void Invoke_memory();
 
 #endif //ACA_TERMPROJECT_MEMORY_H

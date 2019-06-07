@@ -16,6 +16,7 @@ typedef struct L2_Struct {
     int l2_BlockSize;
     int l2_CpuBits;
     unsigned char data[32];
+    Queue queueL2DToL2C;
 } L2Data;
 
 L2Data invoke_L2Data();

@@ -9,13 +9,13 @@
 #include<string.h>
 #include "../Queue/Queue.h"
 
-Queue processorQueue;
+//Queue processorQueue;
 
 Processor invoke_Processor(){
     Processor processor = {};
     processor.startProcessor = &startProcessor;
-    Queue queue = Invoke_Queue();
-    processor.processorQueue = queue;
+    processor.processorQueue  = Invoke_Queue();
+//    processor.processorQueue = queue;
     return processor;
 }
 

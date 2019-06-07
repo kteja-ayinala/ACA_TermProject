@@ -16,7 +16,7 @@ int l2_BlockSize;
 int l2_CpuBits;
 Block Cache[64];
 
-Queue queueL2DToL2C;
+//Queue queueL2DToL2C;
 
 L2Data invoke_L2Data(){
     L2Data l2D = {l2_Tag:3, l2_Index:9, l2_Offset:5, l2_blocks:512, l2_BlockSize:32, l2_CpuBits:17};
@@ -24,7 +24,7 @@ L2Data invoke_L2Data(){
         Cache[i] = invoke_Block();
         Cache[i].validBit = 0;
     }
-    queueL2DToL2C = Invoke_Queue();
+    l2D.queueL2DToL2C = Invoke_Queue();
     printf("\n L2D invoked");
     return l2D;
 }

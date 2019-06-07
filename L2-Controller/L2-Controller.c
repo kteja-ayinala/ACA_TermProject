@@ -14,17 +14,17 @@ int l2_blocks;
 int l2_BlockSize;
 int l2_CpuBits;
 Block Cache[512];
-Queue queueL2CToL2D;
-Queue queueL2CToM;
-Queue queueL2CToL1C;
+//Queue queueL2CToL2D;
+//Queue queueL2CToM;
+//Queue queueL2CToL1C;
 
 
 
 L2Controller invoke_l2Controller(){
     L2Controller l2Controller = {l2_Tag:3, l2_Index:9, l2_Offset:5, l2_blocks:512, l2_BlockSize:32, l2_CpuBits:17};
-    queueL2CToL2D = Invoke_Queue();
-    queueL2CToM = Invoke_Queue();
-    queueL2CToL1C = Invoke_Queue();
+    l2Controller.queueL2CToL2D = Invoke_Queue();
+    l2Controller.queueL2CToM = Invoke_Queue();
+    l2Controller.queueL2CToL1C = Invoke_Queue();
     l2Controller.l2_Read = &l2_Read;
     l2Controller.l2_Write = &l2_Write;
     printf("\n L2C invoked");

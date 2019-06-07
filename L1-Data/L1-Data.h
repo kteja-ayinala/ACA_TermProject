@@ -6,6 +6,7 @@
 
 
 #include "../Address/Address.h"
+#include "../Queue/Queue.h"
 
 typedef struct L1_Struct {
     int l1_Tag;
@@ -15,6 +16,7 @@ typedef struct L1_Struct {
     int l1_BlockSize;
     int l1_CpuBits;
     unsigned char data[32];
+    Queue queueL1DToL1C;
 } L1Data;
 
 L1Data invoke_L1Data();

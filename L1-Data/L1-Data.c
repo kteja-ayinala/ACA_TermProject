@@ -18,7 +18,7 @@ Block way1[64];
 Block way2[64];
 Block way3[64];
 Block way4[64];
-Queue queueL1DToL1C;
+
 
 L1Data invoke_L1Data(){
     L1Data l1D = {l1_Tag:6, l1_Index:6, l1_Offset:5, l1_SetCount:64, l1_BlockSize:32, l1_CpuBits:17};
@@ -32,7 +32,7 @@ L1Data invoke_L1Data(){
         way4[i] = invoke_Block();
         way4[i].validBit = 0;
     }
-    queueL1DToL1C = Invoke_Queue();
+    l1D.queueL1DToL1C = Invoke_Queue();
     printf("\n L1D invoked");
     return l1D;
 }

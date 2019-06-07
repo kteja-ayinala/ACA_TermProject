@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include "../Address/Address.h"
 #include "../Block/Block.h"
+#include "../Queue/Queue.h"
+
 
 typedef struct L1Controller_Struct{
     int l1_Tag;
@@ -18,6 +20,9 @@ typedef struct L1Controller_Struct{
     int l1_CpuBits;
     void (*l1_Write)(Address address, int value);
     int (*l1_Read)(Address address);
+    Queue queueL1CToL1D;
+    Queue queueL1CToL2C;
+    Queue queueL1CToProcessor;
 }L1Controller;
 
 L1Controller invoke_l1Controller();
