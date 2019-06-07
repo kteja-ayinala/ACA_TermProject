@@ -12,11 +12,12 @@ typedef struct L2_Struct {
     int l2_Tag;
     int l2_Index;
     int l2_Offset;
-    int l2_SetCount;
+    int l2_blocks;
     int l2_BlockSize;
     int l2_CpuBits;
     unsigned char data[32];
 } L2Data;
 
 L2Data invoke_L2Data();
+
 #endif //ACA_TERMPROJECT_L2_DATA_H

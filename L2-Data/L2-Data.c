@@ -1,9 +1,11 @@
 //
 // Created by Krishna Teja Ayinala on 2019-05-28.
 //
-
+#include "stdio.h"
 #include "../Address/Address.h"
 #include "L2-Data.h"
+#include "../Block/Block.h"
+#include "../Queue/Queue.h"
 
 
 int l2_Tag ;
@@ -22,7 +24,7 @@ L2Data invoke_L2Data(){
         Cache[i] = invoke_Block();
         Cache[i].validBit = 0;
     }
-    queueL2DToL2C = Invoke_Queue;
+    queueL2DToL2C = Invoke_Queue();
     printf("\n L2D invoked");
     return l2D;
 }

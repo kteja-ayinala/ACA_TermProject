@@ -5,6 +5,9 @@
 #include "Memory/Memory.h"
 #include "L1-Controller/L1-Controller.h"
 #include "L2-Controller/L2-Controller.h"
+#include "L1-Data/L1-Data.h"
+#include "L2-Data/L2-Data.h"
+
 
 
 //
@@ -17,11 +20,12 @@
      Processor processor = invoke_Processor();       //Initiate processor
      processor.startProcessor();
      L1Controller l1Controller = invoke_l1Controller();
+     L1Data l1Data= invoke_L1Data();
      L2Controller l2Controller = invoke_l2Controller();
+     L2Data l2Data= invoke_L2Data();
 
-
-     Instruction k = dequeue();
-     l1Controller.l1_Read(k.address);
+//     Instruction k = dequeue();
+//     l1Controller.l1_Read(k.address);
 
 
 
