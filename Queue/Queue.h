@@ -16,12 +16,12 @@
 typedef struct Instruction_Struct{
     int cc;
     int instruction;
-    char* data;
+    int data;
     Address address;
     int readLength;
 } Instruction;
 
-Instruction Invoke_Instruction(int instructionNumber, Address address, char* data, int readLength);
+Instruction Invoke_Instruction(int instructionNumber, Address address, int data, int readLength);
 
 
 typedef struct Queue_Struct

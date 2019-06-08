@@ -8,14 +8,14 @@
 #include "../Address/Address.h"
 
 #define MAXSIZE 100
-//Instruction queue[MAXSIZE];
+//Instruction varray[MAXSIZE];
 //int length = 0;
 //int q_start_index = -1;
 //int q_end_index = -1;
 
 
 Queue Invoke_Queue(){
-    Queue queue = {capacity: 100, current_size:0, length:0, q_start_index:-1, queue.q_end_index = -1};
+    Queue queue = {capacity: 100, current_size:0, length:0, q_start_index:-1, q_end_index:-1};
     queue.enqueue = &enqueue;
     queue.dequeue = &dequeue;
     queue.display = &display;
@@ -56,13 +56,13 @@ void enqueue(Queue *queue, Instruction *instruction){
 //function to remove an element from queue
 Instruction dequeue(Queue *queue) {
 //    Link *link;
-Instruction instruction;
-    if (!queueEmpty) {
+Instruction *instruction;
+    if (queue->length==0) {
         Instruction emptyInstruction = {data:NULL};
         printf("Queue empty\n");
         return emptyInstruction;
     } else {
-        instruction = queue->varray[queue->q_start_index];
+        *instruction = queue->varray[queue->q_start_index];
         if (queue->q_start_index == queue->q_end_index) {
             queue->q_start_index = -1;
             queue->q_end_index = -1;
@@ -70,7 +70,7 @@ Instruction instruction;
 //        printf("\n dequeued element is : %d\n", queue[q_start_index]);
         queue->q_start_index += 1;
         queue->length--;
-        return instruction;
+        return *instruction;
     }
 }
 //function to display elements in the queue
@@ -81,15 +81,14 @@ Instruction instruction;
             printf("Queue is empty \n");
         else
         {
-//            printf("Queue is : \n");
             for (i =  queue->q_start_index; i <=  queue->q_end_index; i++)
-                printf("%d ", queue[i]);
+                printf("%d ", queue->varray[i]);
             printf("\n");
         }
     }
 
 
-Instruction Invoke_Instruction(int instructionType, Address address, char* data,int readLength){
+Instruction Invoke_Instruction(int instructionType, Address address, int data,int readLength){
     Instruction instruction = {instruction:instructionType, address:address, data:data, readLength:readLength };
     return instruction;
 }

@@ -11,6 +11,7 @@
 typedef struct Processor_Struct{
     void (*startProcessor)(struct Processor *processor);
     Queue processorQueue;;
+    Queue queuePTOL1C;
 } Processor;
 
 Processor invoke_Processor();

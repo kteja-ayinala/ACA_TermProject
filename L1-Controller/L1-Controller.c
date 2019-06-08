@@ -36,6 +36,7 @@ L1Controller invoke_l1Controller(){
     }
     l1Controller.queueL1CToL1D = Invoke_Queue();
     l1Controller.queueL1CToL2C = Invoke_Queue();
+    l1Controller.queuePTOL1C = Invoke_Queue();
     l1Controller.queueL1CToProcessor = Invoke_Queue();
 
     l1Controller.l1_Read = &l1_Read;

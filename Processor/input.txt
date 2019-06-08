@@ -1,3 +1,2 @@
-CPURead 2 6
-CPURead 3 3
-CPUWrite 4 3
+CPURead 5 6
+CPURead 8 3

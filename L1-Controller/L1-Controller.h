@@ -22,6 +22,7 @@ typedef struct L1Controller_Struct{
     int (*l1_Read)(Address address);
     Queue queueL1CToL1D;
     Queue queueL1CToL2C;
+    Queue queuePTOL1C;
     Queue queueL1CToProcessor;
 }L1Controller;
 

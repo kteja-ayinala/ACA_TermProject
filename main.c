@@ -24,18 +24,38 @@
      L2Controller l2Controller = invoke_l2Controller();
      L2Data l2Data= invoke_L2Data();
 
-     int counter = 0;
 
+//     if (!processor.queueProcessor.isEmpty()) {
+//         message = (Message) processor.queueProcessor.dequeue();
+//         processor.queuePToL1C.enqueue(message);
+//         System.out.println("Processor: Message sent from Processor to L1 Controller: " + message.getOriginalMessage());
+//     }
+//     if (!processor.queuePToL1C.isEmpty()) {
+//         message = (Message) processor.queuePToL1C.dequeue();
+//         L1C.queuePToL1C.enqueue(message);
+//         System.out.println("L1Controller: Message sent from Processor is received at L1 Controller: " + message.getOriginalMessage());
+//     }
+
+     int counter = 0;
+     Instruction ins;
+//     display(&processor.processorQueue);
      do{
+         printf("\n-------------------------");
+         printf("%d", counter);
          counter++;
          if(processor.processorQueue.length!=0){
-             Instruction k = processor.processorQueue.dequeue(&processor.processorQueue);
-             processor.processorQueue.display(&processor.processorQueue);
-             printf("I am In " );
+              ins = dequeue(&processor.processorQueue);
+             enqueue(&processor.queuePTOL1C, &ins);
+             printf("\nProcessor: Message sent from Processor to L1 Controller:%d ", ins.address.Addr);
+         }
+         if(processor.queuePTOL1C.length!=0){
+              ins = dequeue(&processor.queuePTOL1C);
+             enqueue(&l1Controller.queuePTOL1C, &ins);
+             printf("\nL1Controller: Message sent from Processor is received at L1 Controller:%d " , ins.address.Addr);
          }
 //         processor->processorQueue.enqueue(&processor->processorQueue, &instruction);
 
-     }while(counter<3);
+     }while(processor.processorQueue.length!=0  );
 
 //     Instruction k = dequeue();
 //     l1Controller.l1_Read(k.address);
