@@ -11,6 +11,7 @@
 #include "../Queue/Queue.h"
 
 
+
 typedef struct L1Controller_Struct{
     int l1_Tag;
     int l1_Index;
@@ -20,6 +21,7 @@ typedef struct L1Controller_Struct{
     int l1_CpuBits;
     void (*l1_Write)(Address address, int value);
     int (*l1_Read)(Address address);
+    bool (*isHit)(Address address);
     Queue queueL1CToL1D;
     Queue queueL1CToL2C;
     Queue queuePTOL1C;
@@ -30,6 +32,7 @@ L1Controller invoke_l1Controller();
 
 int l1_Read(Address addr);
 void l1_Write(Address addr, int value);
+bool isHit(Address addr);
 
 
 

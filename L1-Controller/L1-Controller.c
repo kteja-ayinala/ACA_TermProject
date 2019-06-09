@@ -41,6 +41,7 @@ L1Controller invoke_l1Controller(){
 
     l1Controller.l1_Read = &l1_Read;
     l1Controller.l1_Write = &l1_Write;
+    l1Controller.isHit = &isHit;
     printf("\n L1C invoked");
     return l1Controller;
 }
@@ -50,5 +51,17 @@ int l1_Read(Address address){
 }
 void l1_Write(Address address, int value){
     printf("l1_Write");
+}
+
+bool isHit(Address addr){
+    int index = addr.Index;
+    int tag = addr.Tag;
+    bool isIncache1 = way1[tag].tag == way1[tag].validBit;
+    bool isIncache2 = way2[tag].tag == way2[tag].validBit;
+    bool isIncache3 = way3[tag].tag == way3[tag].validBit;
+    bool isIncache4 = way4[tag].tag == way4[tag].validBit;
+    if(isIncache1 || isIncache2 || isIncache3 || isIncache4){
+        return true;
+    }
 }
 

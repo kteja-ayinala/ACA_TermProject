@@ -14,14 +14,14 @@
 
 
 typedef struct Instruction_Struct{
-    int cc;
-    int instruction;
+    int instructionNumber;
+    int instructionKind;
     int data;
     Address address;
     int readLength;
 } Instruction;
 
-Instruction Invoke_Instruction(int instructionNumber, Address address, int data, int readLength);
+Instruction Invoke_Instruction(int instructionNumber, int instructionKind, int data, Address address,  int readLength);
 
 
 typedef struct Queue_Struct

@@ -15,7 +15,12 @@
 
 
 Queue Invoke_Queue(){
-    Queue queue = {capacity: 100, current_size:0, length:0, q_start_index:-1, q_end_index:-1};
+    Queue queue = {};
+    queue.capacity = 100;
+    queue.current_size = 0;
+    queue.length = 0;
+    queue.q_start_index = -1;
+    queue.q_end_index = -1;
     queue.enqueue = &enqueue;
     queue.dequeue = &dequeue;
     queue.display = &display;
@@ -30,7 +35,7 @@ bool queueEmpty(Queue *queue){
 }
 //function to check if queue is full
 bool checkForOverflow(Queue *queue){
-    return queue->q_start_index == 0  && queue->q_end_index== MAXSIZE -1;
+    return queue->q_start_index == 0  && queue->q_end_index== 99;
 }
 
 //function to get length of queue
@@ -56,13 +61,13 @@ void enqueue(Queue *queue, Instruction *instruction){
 //function to remove an element from queue
 Instruction dequeue(Queue *queue) {
 //    Link *link;
-Instruction *instruction;
+Instruction instruction;
     if (queue->length==0) {
-        Instruction emptyInstruction = {data:NULL};
+        Instruction emptyInstruction = {NULL};
         printf("Queue empty\n");
         return emptyInstruction;
     } else {
-        *instruction = queue->varray[queue->q_start_index];
+        instruction = queue->varray[queue->q_start_index];
         if (queue->q_start_index == queue->q_end_index) {
             queue->q_start_index = -1;
             queue->q_end_index = -1;
@@ -70,7 +75,7 @@ Instruction *instruction;
 //        printf("\n dequeued element is : %d\n", queue[q_start_index]);
         queue->q_start_index += 1;
         queue->length--;
-        return *instruction;
+        return instruction;
     }
 }
 //function to display elements in the queue
@@ -82,14 +87,14 @@ Instruction *instruction;
         else
         {
             for (i =  queue->q_start_index; i <=  queue->q_end_index; i++)
-                printf("%d ", queue->varray[i]);
+                printf("%d ", queue->varray[i].instructionNumber );
             printf("\n");
         }
     }
 
 
-Instruction Invoke_Instruction(int instructionType, Address address, int data,int readLength){
-    Instruction instruction = {instruction:instructionType, address:address, data:data, readLength:readLength };
+Instruction Invoke_Instruction(int instructionNumber,int instructionKind,  int data, Address address, int readLength){
+    Instruction instruction = {instructionNumber:instructionNumber, instructionKind:instructionKind, data:data, address:address, readLength:readLength };
     return instruction;
 }
 

@@ -8,15 +8,18 @@
 #include <stdbool.h>
 #include<string.h>
 #include "../Queue/Queue.h"
+#include "../L1-Controller/L1-Controller.h"
+#include "../L2-Controller/L2-Controller.h"
 
 //Queue processorQueue;
-
-Processor invoke_Processor(){
+//L1Controller *l1Controller, L2Controller *l2Controller
+Processor Invoke_Processor(){
     Processor processor = {};
+//    processor.l1Controller = *l1Controller;
+//    processor.l2Controller = *l2Controller;
     processor.startProcessor = &startProcessor;
     processor.processorQueue  = Invoke_Queue();
     processor.queuePTOL1C  = Invoke_Queue();
-//    processor.processorQueue = queue;
     return processor;
 }
 
@@ -24,8 +27,9 @@ void startProcessor(Processor *processor)
 {
     // a)Read input file
     FILE *f = fopen("/Users/krishnatejaayinala/CLionProjects/ACA-TermProject/Processor/input.txt", "r"); //take input file
-
+int counter = 0;
     while (!feof(f)) {
+
         Address addr;
         Instruction ins;
         int readLength;
@@ -40,16 +44,12 @@ void startProcessor(Processor *processor)
             printf("\n CPURead");
             fscanf(f, "%d %d", &address, &readLength);
             rw = 0;
-//            int readLength = &readLength;
             char* binaryAddress = convertToBinary(address);
 //            printf("\n convertToBinary check:%s", binaryAddress);
             addr = Invoke_Address(binaryAddress);
-            ins= Invoke_Instruction(rw,addr,NULL,readLength);
-//            Queue q = processor->processorQueue;
-            processor->processorQueue.enqueue(&processor->processorQueue, &ins);
-//            printf("\ncur size%d", processor->processorQueue.length);
+            ins= Invoke_Instruction(counter++,rw,NULL,addr,readLength);
+            enqueue(&processor->processorQueue, &ins);
 
-//            display();
 
 
             // b)Queue instructions
@@ -60,14 +60,37 @@ void startProcessor(Processor *processor)
             rw = 1;
             char* binaryAddress = convertToBinary(address);
             addr = Invoke_Address(binaryAddress);
-            ins = Invoke_Instruction(rw,addr,value,NULL);
-            processor->processorQueue.enqueue(&processor->processorQueue, &ins);
-//            printf("\ncur size%d", processor->processorQueue.findSize(&processor->processorQueue));
+            ins= Invoke_Instruction(counter++,rw,value,addr,NULL);
+            enqueue(&processor->processorQueue, &ins);
 
             // b)Queue instructions
 
         }
     }
+//    int cycle = 0;
+//
+////     display(&processor.processorQueue);
+//
+//    do {
+//        printf("\n-------------------------");
+//        printf("%d", counter);
+//        counter++;
+//        if (processor->processorQueue.length != 0) {
+//            Instruction ins = dequeue(&processor->processorQueue);
+//            enqueue(&processor->queuePTOL1C, &ins);
+//
+////             enqueue(&processor.queuePTOL1C,&ins);
+////             enqueue(&(processor).queuePTOL1C, &ins);
+//            printf("\nProcessor: Message sent from Processor to L1 Controller:%d ", ins.address.Addr);
+//        }
+//        if (processor->queuePTOL1C.length != 0) {
+//            Instruction ins = dequeue(&processor->queuePTOL1C);
+//            enqueue(&processor->l1Controller.queuePTOL1C, &ins);
+//            printf("\nL1Controller: Message sent from Processor is received at L1 Controller:%d ",ins.address.Addr);
+//        }
+////         processor->processorQueue.enqueue(&processor->processorQueue, &instruction);
+//
+//    } while (processor->processorQueue.length != 0);
 }
 
 
