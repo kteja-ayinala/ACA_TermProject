@@ -101,7 +101,7 @@ Address Invoke_Address(char *binaryAddress){
     GetChar(binaryAddress,6,6,output);
     char* IndexString = output;
 //    printf("Index %s", IndexString);
-    output = malloc(6);
+    output = malloc(7);
     GetChar(binaryAddress,12,5,output);
     char* OffsetString = output;
 //    printf("Index %s", OffsetString);
@@ -118,7 +118,30 @@ Address Invoke_Address(char *binaryAddress){
 }
 
 
-
+Address format_address(char *binaryAddress, int tagBits, int indexBits, int offsetBits){
+    char* output = malloc(tagBits+1);
+    GetChar(binaryAddress,0,tagBits,output);
+    char* TagString = output;
+//    printf("\ntag %s", TagString);
+    output = malloc(indexBits+1);
+    GetChar(binaryAddress,tagBits,indexBits,output);
+    char* IndexString = output;
+//    printf("Index %s", IndexString);
+    output = malloc(offsetBits+1);
+    GetChar(binaryAddress,tagBits+indexBits,offsetBits,output);
+    char* OffsetString = output;
+//    printf("Index %s", OffsetString);
+    int Tag = convertFromBinary(TagString);
+    int Index = convertFromBinary(IndexString);
+    int Offset = convertFromBinary(OffsetString);
+    int Addr = convertFromBinary(binaryAddress);
+//    printf("\ntag %d", Tag);
+//    printf("Index %d", Index);
+//    printf("Offset %d", Offset);
+//    printf("addr %d", Addr);
+    Address address = {Tag:Tag, Index:Index, Offset:Offset, Addr:Addr};
+    return address;
+}
 
 
 

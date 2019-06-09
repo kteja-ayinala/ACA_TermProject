@@ -22,6 +22,9 @@ typedef struct L1Controller_Struct{
     void (*l1_Write)(Address address, int value);
     int (*l1_Read)(Address address);
     bool (*isHit)(Address address);
+    bool (*isValid)(int index, int tag);
+    bool (*isDirty)(int index, int tag);
+    void (*setState)(int index, char* state);
     Queue queueL1CToL1D;
     Queue queueL1CToL2C;
     Queue queuePTOL1C;
@@ -32,7 +35,10 @@ L1Controller invoke_l1Controller();
 
 int l1_Read(Address addr);
 void l1_Write(Address addr, int value);
-bool isHit(Address addr);
+bool isL2Hit(Address addr);
+bool isL2Valid(int index, int tag);
+bool isL2Dirty(int index, int tag);
+void setState(int index, char* state);
 
 
 

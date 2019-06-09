@@ -7,12 +7,12 @@
 #include "Block.h"
 #include "../Queue/Queue.h"
 
-int l1_Tag ;
-int l1_Index;
-int l1_Offset;
-int l1_SetCount;
-int l1_BlockSize;
-int l1_CpuBits;
+//int l1_Tag ;
+//int l1_Index;
+//int l1_Offset;
+//int l1_SetCount;
+//int l1_BlockSize;
+//int l1_CpuBits;
 Block way1[64];
 Block way2[64];
 Block way3[64];
@@ -41,7 +41,10 @@ L1Controller invoke_l1Controller(){
 
     l1Controller.l1_Read = &l1_Read;
     l1Controller.l1_Write = &l1_Write;
-    l1Controller.isHit = &isHit;
+    l1Controller.isHit = &isL2Hit;
+    l1Controller.isValid = &isL2Valid;
+    l1Controller.isDirty = &isL2Dirty;
+    l1Controller.setState = &setState;
     printf("\n L1C invoked");
     return l1Controller;
 }
@@ -53,15 +56,64 @@ void l1_Write(Address address, int value){
     printf("l1_Write");
 }
 
-bool isHit(Address addr){
+bool isL2Hit(Address addr){
     int index = addr.Index;
     int tag = addr.Tag;
-    bool isIncache1 = way1[tag].tag == way1[tag].validBit;
-    bool isIncache2 = way2[tag].tag == way2[tag].validBit;
-    bool isIncache3 = way3[tag].tag == way3[tag].validBit;
-    bool isIncache4 = way4[tag].tag == way4[tag].validBit;
+    bool isIncache1 = way1[index].tag == tag && way1[tag].validBit;
+    bool isIncache2 = way2[index].tag == tag && way2[tag].validBit;
+    bool isIncache3 = way3[index].tag == tag && way3[tag].validBit;
+    bool isIncache4 = way4[index].tag == tag && way4[tag].validBit;
     if(isIncache1 || isIncache2 || isIncache3 || isIncache4){
         return true;
     }
+    return false;
+}
+
+bool isL2Valid(int index, int tag){
+    bool valid = true;
+    if(!way1[index].validBit || !way2[index].validBit || !way3[index].validBit || !way4[index].validBit){
+        return false;
+    } else{
+        if(way1[index].tag == tag){
+            valid = way1[index].validBit;
+        }
+        if(way2[index].tag == tag){
+            valid = way2[index].validBit;
+        }
+        if(way3[index].tag == tag){
+            valid = way3[index].validBit;
+        }
+        if(way4[index].tag == tag){
+            valid = way4[index].validBit;
+        }
+        return valid;
+    }
+}
+
+bool isL2Dirty(int index, int tag){
+    bool dirty = false;
+        if(way1[index].tag == tag){
+            dirty = way1[index].dirtyBit;
+            return dirty;
+        }
+        if(way2[index].tag == tag){
+            dirty = way2[index].dirtyBit;
+            return dirty;
+        }
+        if(way3[index].tag == tag){
+            dirty = way3[index].dirtyBit;
+            return dirty;
+        }
+        if(way4[index].tag == tag){
+            dirty = way4[index].dirtyBit;
+            return dirty;
+        }
+        return dirty;
+    }
+
+
+void setState(int index, char* state){
+    //hash map
+    printf("Have to implement hasahmap / use lib?");
 }
 

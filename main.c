@@ -10,6 +10,7 @@
 #include "L1-Data/L1-Data.h"
 #include "L2-Data/L2-Data.h"
 bool L1Hit;
+bool L2Hit;
 
 
 
@@ -54,24 +55,66 @@ bool L1Hit;
                         case 0:
                             L1Hit = l1Controller.isHit(ins.address);
                             if(L1Hit){
-                                printf("Tag matched!!");
+                                printf("\nTag matched - Hit!!");
                             }
-//        if()
-        break;
-    case 1:
-        break;
-    default:
-        break;
+                            else {
+                                if (l1Controller.isValid(ins.address.Index, ins.address.Tag)) {
+                                    if (l1Controller.isDirty(ins.address.Index, ins.address.Tag)) {
+                                        printf("\nis Dirty");
+                                    }else{
+                                        printf("\n is clean");
+                                    }
+                                } else {
+                                    printf("\nL1Controller: Missi, current state: RdwaitL2d");
+                                    enqueue(&l1Controller.queueL1CToL2C,&ins);
+                                    l1Controller.setState(ins.address.Index,"RdwaitL2d");
+                                    printf("\nL1Controller: Message sent from L1C to L2C");
+                                      printf("\n handle");
 
-
-}
-//                 enqueue(&l1Controller.queuePTOL1C, &ins);
-                 printf("\nProcessor: Message sent from Processor to L1 Controller:%d ",ins.address.Addr);
+                                }
+                            }
+                            break;
+                            case 1:
+                            break;
+                    }
              }
+             if(l1Controller.queueL1CToL2C.length!=0){
+                 Instruction ins = dequeue(&l1Controller.queueL1CToL2C);
+                enqueue(&l2Controller.queueL1CToL2C, &ins);
+                printf("\nL2Controller: Message sent from L1C is received at L2C");
+             }
+             if(l2Controller.queueL1CToL2C.length!=0){
+                 Instruction ins = dequeue(&l2Controller.queueL1CToL2C);
+                 switch (ins.instructionKind){
+                     case 0:
+                         L2Hit = l2Controller.isHit(ins.binaryAddress);
+                         if(L2Hit){
+                             printf("\nL2Tag matched - Hit!!");
+                         }
 
-             printf("\n----------------");
+                         else {
+                             if (l2Controller.isValid(ins.binaryAddress)) {
+                                 if (l2Controller.isDirty(ins.binaryAddress)) {
+                                     printf("\nl2 is Dirty");
+                                 }else{
+                                     printf("\nl2 is clean");
+                                 }
+                             }
+                             else {
+                                 printf("\nL2Controller: Missi, current state: RdwaitL2d");
+                                 enqueue(&l2Controller.queueL2CToM,&ins);
+                                 printf("\nL2Controller: Message sent from L2C to Memory");
+                                 printf("\n handle");
 
-             printf("\n----------------");
+                             }
+                         }
+
+
+                         break;
+                     case 1:
+                         break;
+                 }
+             }
 
          } while (processor.processorQueue.length != 0);
 

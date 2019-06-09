@@ -93,8 +93,8 @@ Instruction instruction;
     }
 
 
-Instruction Invoke_Instruction(int instructionNumber,int instructionKind,  int data, Address address, int readLength){
-    Instruction instruction = {instructionNumber:instructionNumber, instructionKind:instructionKind, data:data, address:address, readLength:readLength };
+Instruction Invoke_Instruction(int instructionNumber,int instructionKind,  int data, Address address, int readLength, char* binaryAddress){
+    Instruction instruction = {instructionNumber:instructionNumber, instructionKind:instructionKind, data:data, address:address, readLength:readLength, binaryAddress:binaryAddress };
     return instruction;
 }
 

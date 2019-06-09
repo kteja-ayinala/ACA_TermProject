@@ -19,6 +19,10 @@ typedef struct L2Controller_Struct{
     int l2_CpuBits;
     void (*l2_Write)(Address address, int value);
     int (*l2_Read)(Address address);
+    bool (*isHit)(char* addr);
+    bool (*isValid)(char* addr);
+    bool (*isDirty)(char* addr);
+    Queue queueL1CToL2C;
     Queue queueL2CToL2D;
     Queue queueL2CToM;
     Queue queueL2CToL1C;
@@ -28,6 +32,9 @@ L2Controller invoke_l2Controller();
 
 int l2_Read(Address addr);
 void l2_Write(Address addr, int value);
+bool isHit(char* addr);
+bool isValid(char* addr);
+bool isDirty(char* addr);
 
 
 

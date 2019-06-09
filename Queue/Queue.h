@@ -19,9 +19,10 @@ typedef struct Instruction_Struct{
     int data;
     Address address;
     int readLength;
+    char* binaryAddress;
 } Instruction;
 
-Instruction Invoke_Instruction(int instructionNumber, int instructionKind, int data, Address address,  int readLength);
+Instruction Invoke_Instruction(int instructionNumber, int instructionKind, int data, Address address,  int readLength, char* binaryAddress);
 
 
 typedef struct Queue_Struct

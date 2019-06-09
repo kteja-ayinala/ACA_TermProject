@@ -20,3 +20,5 @@ Block block = { validBit:1, dirtyBit:0,  tag:0, offset:0,  data:32 };
 
 
 
+
+

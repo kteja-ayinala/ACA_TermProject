@@ -47,7 +47,7 @@ int counter = 0;
             char* binaryAddress = convertToBinary(address);
 //            printf("\n convertToBinary check:%s", binaryAddress);
             addr = Invoke_Address(binaryAddress);
-            ins= Invoke_Instruction(counter++,rw,NULL,addr,readLength);
+            ins= Invoke_Instruction(counter++,rw,NULL,addr,readLength, binaryAddress);
             enqueue(&processor->processorQueue, &ins);
 
 
@@ -60,7 +60,7 @@ int counter = 0;
             rw = 1;
             char* binaryAddress = convertToBinary(address);
             addr = Invoke_Address(binaryAddress);
-            ins= Invoke_Instruction(counter++,rw,value,addr,NULL);
+            ins= Invoke_Instruction(counter++,rw,value,addr,NULL, binaryAddress);
             enqueue(&processor->processorQueue, &ins);
 
             // b)Queue instructions

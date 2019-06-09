@@ -20,12 +20,14 @@ typedef struct AddressBits {
 
 //int * _convertAddressToBinary(int Address);
 
-Address Invoke_Address(char *bitString);
+Address Invoke_Address(char *binaryAddress);
+
+Address format_address(char *binaryAddress, int tagBits, int indexBits, int offsetBits);
 
 char* GetChar(char* originalString,int start,int length,char* substring);
 int convertFromBinary(char *s);
 //char* convertToBinary(int a, char *buffer, int buf_size);
 char *convertToBinary(int n);
-char* format_address(int address, int blockSize, int tagLength, int indexLength, int offsetLength);
+//char* format_address(int address, int blockSize, int tagLength, int indexLength, int offsetLength);
 //char *convertToBinary(int n);
 #endif //ACA_TERMPROJECT_ADDRESS_H
