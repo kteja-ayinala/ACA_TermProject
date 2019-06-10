@@ -15,10 +15,14 @@ typedef struct Block_Struct {
     int dirtyBit;
     int tag;
     int offset;
-    char data[32];
+    char data[33];
 }Block;
 
+
+
 Block invoke_Block();
+Block* invoke_BlockWithData(char* blockData);
+Block invoke_CacheBlockMem(char data[], int index, int cycle);
 
 
 

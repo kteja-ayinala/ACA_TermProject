@@ -15,7 +15,7 @@
 typedef struct Processor_Struct{
     Queue processorQueue;
     Queue queuePTOL1C;
-    void (*startProcessor)();
+    void (*startProcessor)(struct Processor *processor);
 //    L1Controller l1Controller;
 //    L2Controller l2Controller;
 } Processor;

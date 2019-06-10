@@ -13,36 +13,37 @@ bool L1Hit;
 bool L2Hit;
 
 
-
 //
 // Created by Krishna Teja Ayinala on 2019-05-27.
 //
 
  int main() {
      printf("Implementation starts from here");
-     Invoke_memory();     //Initiate Memory
-
+//     Invoke_memory();     //Initiate Memory
      L1Controller l1Controller = invoke_l1Controller();
      L1Data l1Data = invoke_L1Data();
      L2Controller l2Controller = invoke_l2Controller();
      L2Data l2Data = invoke_L2Data();
      Processor processor = Invoke_Processor();       //Initiate processor
      processor.startProcessor(&processor);
+    Memory* memory = Invoke_memory();
+//    memory.create_memory(&memory);
 
 
-         int counter = 0;
+     int counter = 0;
 
-//     display(&processor.processorQueue);
          do {
              printf("\n-------------------------");
              printf("%d", counter);
              counter++;
+//
 //             if (processor.processorQueue.length != 0) {
 //                 Instruction ins = dequeue(&processor.processorQueue);
-//                 enqueue(&processor.queuePTOL1C, &ins);
+//                 //enqueue(&processor.queuePTOL1C, &ins);
 //
 //                 printf("\nProcessor: Message sent from Processor to L1 Controller:%d ", ins.address.Addr);
 //             }
+
              if (processor.processorQueue.length != 0) {
                  Instruction ins = dequeue(&processor.processorQueue);
                  enqueue(&l1Controller.queuePTOL1C, &ins);
@@ -70,7 +71,6 @@ bool L2Hit;
                                     l1Controller.setState(ins.address.Index,"RdwaitL2d");
                                     printf("\nL1Controller: Message sent from L1C to L2C");
                                       printf("\n handle");
-
                                 }
                             }
                             break;
@@ -109,14 +109,43 @@ bool L2Hit;
                              }
                          }
 
-
                          break;
                      case 1:
                          break;
                  }
              }
 
+
+             if(l2Controller.queueL2CToM.length!=0){
+                Instruction ins = dequeue(&l2Controller.queueL2CToM);
+              enqueue(&memory->queueL2CToM, &ins);
+              printf("\nMemory: Message received at memory from L2C");
+             }
+             Instruction ins = dequeue(&memory->queueL2CToM);
+//             Address faddress = format_address(ins.binaryAddress, 0,12,5);
+//             int index = faddress.Index;
+//             Block memBlock = invoke_CacheBlockMem(memory->MemoryBlock[index].data, index, counter);
+             Block memBlock;
+             if(memory->queueL2CToM.length != 0){
+                 Instruction ins = dequeue(&memory->queueL2CToM);
+                 Address faddress = format_address(ins.binaryAddress, 0,12,5);
+                 int index = faddress.Index;
+                 switch(ins.instructionKind){
+                     case 0:
+                          memBlock = invoke_CacheBlockMem(memory->MemoryBlock[index]->data, index, counter);
+                         counter +=7;
+
+                         if(false){
+
+                         }
+                 }
+             }
+
+
          } while (processor.processorQueue.length != 0);
+
+
+
 
 //     Instruction k = dequeue();
 //     l1Controller.l1_Read(k.address);

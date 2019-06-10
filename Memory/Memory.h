@@ -15,12 +15,19 @@ typedef struct Memory_Struct {
     int memory_CpuBits;
     int memory_BlockCount;
     int memory_BlockSize;
+    Block* MemoryBlock[4096];
+//    void (*create_memory)(struct Memory *memory);
+    Queue queueL2CToM;
     Queue queueToMemory;
     Queue queueFromMemory;
-    Block memoryBlock;
     Queue queueMemoryToL2C;
+
+
 } Memory;
 
-void Invoke_memory();
+
+ Memory* Invoke_memory();
+
+// void create_memory(Memory *memory);
 
 #endif //ACA_TERMPROJECT_MEMORY_H
