@@ -10,12 +10,15 @@
 #include "../Address/Address.h"
 #include "stdbool.h"
 
+
+
+
 typedef struct Block_Struct {
     int validBit;
     int dirtyBit;
     int tag;
     int offset;
-    char data[33];
+    char data[32];
 }Block;
 
 
@@ -26,6 +29,9 @@ Block invoke_CacheBlockMem(char data[], int index, int cycle);
 
 
 
+//void setcacheBlockAddress(int address){
+//    cacheBlockAddress = address;
+//}
 #endif //ACA_TERMPROJECT_BLOCK_H
 
 

@@ -25,6 +25,7 @@ typedef struct L2Controller_Struct{
     Queue queueL1CToL2C;
     Queue queueL2CToL2D;
     Queue queueL2CToM;
+    Queue queueMToL2C;
     Queue queueL2CToL1C;
 }L2Controller;
 

@@ -52,14 +52,13 @@ Block invoke_CacheBlockMem(char mdata[], int index, int counter){
             count++;
         }
         if (flag) {
-            printf("-------");
-            printf("Cycle Number: %d" + counter);
+            printf("\nCycle Number: %d" , counter);
             counter++;
         } else {
             flag = true;
             counter++;
         }
-        printf("Memory: Retrieving data from memory to L2 Data at: %d", location);
+        printf("\nMemory: Retrieving data from memory to L2 Data at: %d", location);
     }
     return block;
 

@@ -33,8 +33,8 @@ Memory* Invoke_memory(){
 
 
     for (int i = 0; i < 4096; i++){
-        char blockData[33];
-        for (int j = 0;j < 33;j++){
+        char blockData[32];
+        for (int j = 0;j < 32;j++){
             blockData[j] = (char) (65 + (j%26));
         }
 

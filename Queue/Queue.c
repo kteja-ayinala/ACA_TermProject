@@ -93,12 +93,18 @@ Instruction instruction;
     }
 
 
-Instruction Invoke_Instruction(int instructionNumber,int instructionKind,  int data, Address address, int readLength, char* binaryAddress){
+Instruction Invoke_Instruction(int instructionNumber, int instructionKind, int data, Address address, int readLength, char* binaryAddress){
     Instruction instruction = {instructionNumber:instructionNumber, instructionKind:instructionKind, data:data, address:address, readLength:readLength, binaryAddress:binaryAddress };
     return instruction;
 }
 
-Link Invoke_Link(Instruction instruction){
-    Link link = {data:instruction};
-    return link;
+
+ReadDataInstruction Invoke_memInstruction(int instructionNumber, int instructionKind, int data, Address address, int readLength, char* binaryAddress, Block dataBlock,int datBlockAddress){
+    ReadDataInstruction rd = {instructionNumber:instructionNumber, instructionKind:instructionKind, data:data, address:address, readLength:readLength, binaryAddress:binaryAddress, dataBlock:dataBlock, datBlockAddress:datBlockAddress };
+    return rd;
 }
+
+//Link Invoke_Link(Instruction instruction){
+//    Link link = {data:instruction};
+//    return link;
+//}

@@ -27,15 +27,13 @@ bool L2Hit;
      Processor processor = Invoke_Processor();       //Initiate processor
      processor.startProcessor(&processor);
     Memory* memory = Invoke_memory();
-//    memory.create_memory(&memory);
-
 
      int counter = 0;
 
          do {
-             printf("\n-------------------------");
-             printf("%d", counter);
              counter++;
+             printf("%d", counter);
+
 //
 //             if (processor.processorQueue.length != 0) {
 //                 Instruction ins = dequeue(&processor.processorQueue);
@@ -121,7 +119,7 @@ bool L2Hit;
               enqueue(&memory->queueL2CToM, &ins);
               printf("\nMemory: Message received at memory from L2C");
              }
-             Instruction ins = dequeue(&memory->queueL2CToM);
+//             Instruction ins = dequeue(&memory->queueL2CToM);
 //             Address faddress = format_address(ins.binaryAddress, 0,12,5);
 //             int index = faddress.Index;
 //             Block memBlock = invoke_CacheBlockMem(memory->MemoryBlock[index].data, index, counter);
@@ -134,10 +132,14 @@ bool L2Hit;
                      case 0:
                           memBlock = invoke_CacheBlockMem(memory->MemoryBlock[index]->data, index, counter);
                          counter +=7;
-
-                         if(false){
-
-                         }
+                         Instruction Invoke_Instruction(int instructionNumber, int instructionKind, int data, Address address, int readLength, char* binaryAddress);
+                         memBlock.dirtyBit = false;
+                         memBlock.validBit = true;
+                         ReadDataInstruction readIns = Invoke_memInstruction(ins.instructionNumber, ins.instructionKind,ins.data, ins.address, ins.readLength, ins.binaryAddress, memBlock,index);
+                        enqueue(&l2Controller.queueL2CToM, &readIns);
+                        printf("\nMemory: Mesage sent from Memory to L2C");
+                     case 1:
+                         break;
                  }
              }
 

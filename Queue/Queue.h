@@ -9,8 +9,7 @@
 #include "stdbool.h"
 #include "../Address/Address.h"
 #include "Queue.h"
-
-
+#include "../Block/Block.h"
 
 
 typedef struct Instruction_Struct{
@@ -42,12 +41,26 @@ typedef struct Queue_Struct
 
 Queue Invoke_Queue();
 
-typedef struct link_Struct {
-    Instruction data;
-    struct link_Struct *prev;
-} Link;
+//typedef struct link_Struct {
+//    Instruction data;
+//    struct link_Struct *prev;
+//} Link;
+//
+//Link Invoke_Link(Instruction instruction);
 
-Link Invoke_Link(Instruction instruction);
+
+typedef struct Instruction_Mem_Struct{
+int instructionNumber;
+int instructionKind;
+int data;
+Address address;
+int readLength;
+char* binaryAddress;
+Block dataBlock;
+int  datBlockAddress;
+} ReadDataInstruction;
+
+ReadDataInstruction Invoke_memInstruction(int instructionNumber, int instructionKind, int data, Address address,  int readLength, char* binaryAddress, Block dataBlock, int datBlockAddress);
 
 
 bool queueEmpty(Queue *queue); //queue size Status

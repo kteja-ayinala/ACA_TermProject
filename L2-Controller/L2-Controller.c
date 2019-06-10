@@ -26,6 +26,7 @@ L2Controller invoke_l2Controller(){
     l2Controller.queueL2CToL2D = Invoke_Queue();
     l2Controller.queueL2CToM = Invoke_Queue();
     l2Controller.queueL2CToL1C = Invoke_Queue();
+    l2Controller.queueMToL2C = Invoke_Queue();
     l2Controller.l2_Read = &l2_Read;
     l2Controller.l2_Write = &l2_Write;
     l2Controller.isHit = &isHit;
